@@ -1,4 +1,6 @@
-baseURL: "https://mabbasiazad.github.io/hugo-website/" 
+# baseURL: "https://mabbasiazad.github.io/portfolio/" 
+baseURL: "https://mabbasiazad.github.io/" 
+
 title: mehdi azad
 paginate: 20
 theme: PaperMod
@@ -29,9 +31,9 @@ params:
     author: Name
     # googleAnalyticsID: "G-XXXXX"
     DateFormat: "January 2006"
-    defaultTheme: light
+    defaultTheme: dark
+    disableThemeToggle: false
     hideFooter: false
-    disableThemeToggle: true
     ShowShareButtons: false
     ShowReadingTime: false
     disableSpecial1stPost: true
