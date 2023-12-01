@@ -54,7 +54,7 @@ params:
             I'm Mehdi Azad(goleh). I have a master's degree in Systems Design Engineering, specializing in AI 
             and Machine Learning from the University of Waterloo
             and Mechatronics from Iran University of Science and Technology.<br />
-            <br />
+
             With 8+ years of professional experience in Data Science and engineering ML systems, 
             I have conducted and managed various AI-driven products/projects in the field of mechatronics and robotics.
             Currently, I am focused on ML applications in healthcare and life science, 
@@ -71,14 +71,16 @@ params:
               url: papers/
             - name: Courses
               url: courses/
-            - name: Data
-              url: data/
-            - name: Newsletter
-              url: https://pmichaillat.substack.com
+            # - name: Data
+            #   url: data/
+            # - name: Newsletter
+            #   url: https://pmichaillat.substack.com
             - name: Tags
               url: tags/
             - name: Archive
               url: archive/
+            - name: Search
+              url: search/
     
     socialIcons:
         - name: CV
