@@ -68,7 +68,7 @@ consequat."
           imageUrl: "my_pic.png"
           imageWidth: 160
           imageHeight: 160
-          imageTitle: Prof. Name
+          imageTitle: mehdi image
           buttons:
             - name: Papers
               url: papers/
