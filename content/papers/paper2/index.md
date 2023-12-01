@@ -1,17 +1,26 @@
 ---
-title: "Paper Title 2" 
-date: 2015-12-01
-tags: ["keyword 1","keyword 2","keyword 4"]
-author: ["Author Name 1", "Author Name 2"]
-description: "This paper shows other things. Published in Journal Name, 2015." 
-summary: "This paper shows other things using other techniques and different data." 
-cover:
-    image: "paper2.png"
-    alt: "Image caption"
-    relative: false
+title: "Reproducible and fully automated testing of nocifensive behanior in mice" 
+date: 2023-11-14
+tags: ["neuroscience", "automation","machine learning","optogenetics", "pain"]
+author: ["Christopher Dedek", "Mehdi A Azadgoleh", "Steven A Prescott"]
+description: "automated pain testing in mice"
+summary: "Preclinical pain testing traditionally
+utilizes techniques—such as stimulating
+by hand and measuring responses by
+eye—that limit reproducibility. We describe a device for consistent
+stimulation and withdrawal measurement
+with millisecond precision. Testing can be
+fully automated, increasing
+standardization and throughput while
+objectively quantifying non-evoked
+behaviors." 
+# cover:
+#     image: "pain_paper.png"
+#     alt: "Image caption"
+#     relative: false
 editPost:
-    URL: "https://doi.org/10.1073/pnas.1816454115"
-    Text: "Other Journal Name"
+    URL: ""
+    Text: "Cell Reports Method"
 
 ---
 
@@ -19,21 +28,20 @@ editPost:
 
 ##### Download
 
-+ [Paper](paper2.pdf)
-+ [Online appendix](appendix2.pdf)
-+ [Code and data](https://github.com/pmichaillat/unemployment-gap)
++ [Paper](pain_paper.pdf)
++ [Code and data](https://github.com/stofe95/ramalgo)
 
 ---
 
 ##### Abstract
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Pain in rodents is often inferred from their withdrawal from noxious stimulation. Threshold stimulus intensity or response latency is used to quantify pain sensitivity. This usually involves applying stimuli by hand and measuring responses by eye, which limits reproducibility and throughput. We describe a device that standardizes and automates pain testing by providing computer-controlled aiming, stimulation, and response measurement. Optogenetic and thermal stimuli are applied using blue and infrared light, respectively. Precise mechanical stimulation is also demonstrated. Reflectance of red light is used to measure paw withdrawal with millisecond precision. We show that consistent stimulus delivery is crucial for resolving stimulus-dependent variations in withdrawal and for testing with sustained stimuli. Moreover, substage video reveals ‘‘spontaneous’’ behaviors for consideration alongside withdrawal metrics to better assess the pain experience. The entire process was automated using machine learning. RAMalgo (reproducible automated multimodal algometry) improves the standardization, comprehensiveness, and throughput of preclinical pain testing.
 
 ---
 
 ##### Figure X: Figure caption
 
-![](paper2.png)
+![](pain_paper.png)
 
 ---
 
@@ -55,7 +63,7 @@ year = {Year}}
 
 ---
 
-##### Related material
+<!-- ##### Related material -->
 
-+ [Presentation slides](presentation2.pdf)
+<!-- + [Presentation slides](presentation2.pdf) -->
 
