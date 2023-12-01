@@ -14,11 +14,10 @@ fully automated, increasing
 standardization and throughput while
 objectively quantifying non-evoked
 behaviors." 
-# cover:
-#     image: "pain_paper.png"
-    #  alt: "Image caption"
-     relative: false
-
+cover:
+    image: ""
+    alt: ""
+    relative: false
 editPost:
     URL: "https://doi.org/10.1016/j.crmeth.2023.100650"
     Text: "Cell Reports Method"
