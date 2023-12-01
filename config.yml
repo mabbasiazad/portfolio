@@ -52,19 +52,19 @@ params:
           title: Mehdi Azad
           subtitle: 
             I'm Mehdi Azad(goleh). I have a master's degree in Systems Design Engineering, specializing in AI 
-            and Machine Learning from the University of Waterloo.<br />
+            and Machine Learning from the University of Waterloo
+            and Mechatronics from Iran University of Science and Technology.<br />
             <br />
             With 8+ years of professional experience in Data Science and engineering ML systems, 
-            I have conducted and managed various AI-driven products/projects, ranging from flagship 
-            to large-scale initiatives in the field of mechatronics and robotics.
+            I have conducted and managed various AI-driven products/projects in the field of mechatronics and robotics.
             Currently, I am focused on ML applications in healthcare and life science, 
             particularly in developing computational models for protein engineering. 
             <br />
             <br />
-            
+
           imageUrl: "my_pic.png"
-          imageWidth: 180
-          imageHeight: 180
+          imageWidth: 160
+          imageHeight: 160
           imageTitle: mehdi image
           buttons:
             - name: Papers
