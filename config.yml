@@ -49,9 +49,9 @@ params:
     math: true
     profileMode:
           enabled: true
-          title: Mehdi Azadgole
+          title: Mehdi Azad
           subtitle: 
-            "I'm Mehdi Azad. I have a master's degree in Systems Design Engineering, specializing in AI 
+            "I'm Mehdi Azad(goleh). I have a master's degree in Systems Design Engineering, specializing in AI 
             and Machine Learning from the University of Waterloo.<br />
             <br />
             With 8+ years of professional experience in Data Science and engineering ML systems, 
@@ -65,8 +65,8 @@ params:
             Click [here](https://drive.google.com/file/d/1cGaxDLa6HGLLxSFubbMrDUyWWxNXklVv/view?usp=sharing) 
             to download my CV. "
           imageUrl: "my_pic.png"
-          imageWidth: 160
-          imageHeight: 160
+          imageWidth: 200
+          imageHeight: 200
           imageTitle: mehdi image
           buttons:
             - name: Papers
@@ -81,6 +81,7 @@ params:
               url: tags/
             - name: Archive
               url: archive/
+    
     socialIcons:
         - name: CV
           url: cv.pdf
