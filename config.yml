@@ -58,13 +58,13 @@ params:
             I have conducted and managed various AI-driven products/projects, ranging from flagship 
             to large-scale initiatives in the field of mechatronics and robotics.
             Currently, I am focused on ML applications in healthcare and life science, 
-            particularly in developing computational models for protein understanding. 
+            particularly in developing computational models for protein engineering. 
+            <br />
+            <br />
             
- 
-
           imageUrl: "my_pic.png"
-          imageWidth: 500
-          imageHeight: 500
+          imageWidth: 180
+          imageHeight: 180
           imageTitle: mehdi image
           buttons:
             - name: Papers
