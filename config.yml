@@ -1,4 +1,4 @@
-baseURL: "https://pascalmichaillat.org/hugo-website/" 
+baseURL: "https://mabbasiazad.github.io/hugo-website/" 
 title: Prof. Name
 paginate: 20
 theme: PaperMod
@@ -25,8 +25,7 @@ menu:
           weight: 4
 
 params:
-    description: "I am a Professor of Subject at the University of Place. My research covers various topics.
-consequat."
+    description: " "
     author: Name
     # googleAnalyticsID: "G-XXXXX"
     DateFormat: "January 2006"
@@ -50,7 +49,7 @@ consequat."
     math: true
     profileMode:
           enabled: true
-          title: Prof. Namely Name
+          title: Mehdi Azadgoleh
           subtitle: 
             "I'm Mehdi Azad. I have a master's degree in Systems Design Engineering, specializing in AI 
             and Machine Learning from the University of Waterloo.<br />
@@ -86,21 +85,21 @@ consequat."
         - name: CV
           url: cv.pdf
         - name: Email
-          url: mailto:pascal.michaillat@gmail.com
-        - name: Location
-          url: location/
-        - name: Office Hours
-          url: officehours/
+          url: mailto:m32abbas@uwaterloo.ca
+        # - name: Location
+        #   url: location/
+        # - name: Office Hours
+        #   url: officehours/
         - name: Google Scholar
-          url: https://scholar.google.com/citations?user=cL23w-4AAAAJ
+          url: https://scholar.google.com/citations?user=KQK75p0AAAAJ&hl=en
         - name: YouTube
           url: https://www.youtube.com/@pmichaillat
         - name: GitHub
-          url: https://github.com/pmichaillat
-        - name: Substack
-          url: https://pmichaillat.substack.com
+          url: https://github.com/mabbasiazad
+        # - name: Substack
+        #   url: https://pmichaillat.substack.com
         - name: Twitter
-          url: https://twitter.com/pmichaillat
+          url: https://twitter.com/Mehdi09953267
 
     assets:
         disableHLJS: true
