@@ -51,7 +51,20 @@ consequat."
     profileMode:
           enabled: true
           title: Prof. Namely Name
-          subtitle: "I am a Professor of Subject at the University of Place. I work on various topics. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo."
+          subtitle: 
+            "I'm Mehdi Azad. I have a master's degree in Systems Design Engineering, specializing in AI 
+            and Machine Learning from the University of Waterloo.<br />
+            <br />
+            With 8+ years of professional experience in Data Science and engineering ML systems, 
+            I have conducted and managed various AI-driven products/projects, ranging from flagship 
+            to large-scale initiatives in the field of mechatronics and robotics.
+            Currently, I am focused on ML applications in healthcare and life science projects, 
+            particularly in developing computational models for protein understanding. 
+            
+            <br />
+            <br />          
+            Click [here](https://drive.google.com/file/d/1cGaxDLa6HGLLxSFubbMrDUyWWxNXklVv/view?usp=sharing) 
+            to download my CV. "
           imageUrl: "picture.jpeg"
           imageWidth: 160
           imageHeight: 160
