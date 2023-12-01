@@ -1,5 +1,5 @@
 baseURL: "https://mabbasiazad.github.io/hugo-website/" 
-title: Prof. Name
+title: mehdi azad
 paginate: 20
 theme: PaperMod
 
@@ -20,9 +20,9 @@ menu:
         - name: Data
           url: data/
           weight: 3 
-        - name: Newsletter
-          url: https://pmichaillat.substack.com
-          weight: 4
+        # - name: Newsletter
+        #   url: https://pmichaillat.substack.com
+        #   weight: 4
 
 params:
     description: " "
@@ -51,7 +51,7 @@ params:
           enabled: true
           title: Mehdi Azad
           subtitle: 
-            "I'm Mehdi Azad(goleh). I have a master's degree in Systems Design Engineering, specializing in AI 
+            I'm Mehdi Azad(goleh). I have a master's degree in Systems Design Engineering, specializing in AI 
             and Machine Learning from the University of Waterloo.<br />
             <br />
             With 8+ years of professional experience in Data Science and engineering ML systems, 
@@ -60,13 +60,11 @@ params:
             Currently, I am focused on ML applications in healthcare and life science, 
             particularly in developing computational models for protein understanding. 
             
-            <br />
-            <br />          
-            Click [here](https://drive.google.com/file/d/1cGaxDLa6HGLLxSFubbMrDUyWWxNXklVv/view?usp=sharing) 
-            to download my CV. "
+ 
+
           imageUrl: "my_pic.png"
-          imageWidth: 200
-          imageHeight: 200
+          imageWidth: 500
+          imageHeight: 500
           imageTitle: mehdi image
           buttons:
             - name: Papers
