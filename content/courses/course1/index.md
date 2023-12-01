@@ -6,8 +6,8 @@ author: "Prof. Name"
 description: "This graduate course presents things." 
 summary: "This graduate course presents various methods and results." 
 cover:
-    image: "course1.png"
-    alt: "Figure caption"
+    image: ""
+    alt: ""
     relative: false
 editPost:
     URL: "https://youtube.com/playlist?list=PL5zEkRHvv2GxQlFbNf-YqSPMP6ePc3DQf"

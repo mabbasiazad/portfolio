@@ -6,8 +6,8 @@ author: "Author Name"
 description: "This paper shows things. Published in Journal Name, 2012." 
 summary: "This paper shows things using various techniques and data." 
 cover:
-    image: "paper1.png"
-    alt: "Image caption"
+    image: ""
+    alt: ""
     relative: false
 editPost:
     URL: "https://doi.org/10.1257/aer.102.4.1721"

@@ -60,6 +60,7 @@ params:
             Currently, I am focused on ML applications in healthcare and life science, 
             particularly in developing computational models for protein engineering. 
             <br />
+            <br />
 
           imageUrl: "my_pic.png"
           imageWidth: 160
@@ -70,8 +71,8 @@ params:
               url: papers/
             - name: Courses
               url: courses/
-            # - name: Data
-            #   url: data/
+            - name: Data
+              url: data/
             # - name: Newsletter
             #   url: https://pmichaillat.substack.com
             - name: Tags
@@ -92,8 +93,8 @@ params:
         #   url: officehours/
         - name: Google Scholar
           url: https://scholar.google.com/citations?user=KQK75p0AAAAJ&hl=en
-        - name: YouTube
-          url: https://www.youtube.com/@pmichaillat
+        # - name: YouTube
+        #   url: https://www.youtube.com/@pmichaillat
         - name: GitHub
           url: https://github.com/mabbasiazad
         # - name: Substack
