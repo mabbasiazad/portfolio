@@ -16,10 +16,11 @@ objectively quantifying non-evoked
 behaviors." 
 # cover:
 #     image: "pain_paper.png"
-#     alt: "Image caption"
-#     relative: false
+    #  alt: "Image caption"
+     relative: false
+
 editPost:
-    URL: ""
+    URL: "https://doi.org/10.1016/j.crmeth.2023.100650"
     Text: "Cell Reports Method"
 
 ---
@@ -39,7 +40,7 @@ Pain in rodents is often inferred from their withdrawal from noxious stimulation
 
 ---
 
-##### Figure X: Figure caption
+##### Figure X: Graphical abstract
 
 ![](pain_paper.png)
 
