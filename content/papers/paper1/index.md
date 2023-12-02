@@ -3,8 +3,8 @@ title: "Paper Title 1"
 date: 2014-03-01
 tags: ["Structural control", "Active control", "Optimization", "Methodology", "Evolutionary algorithms"]
 author: ["Mehdi Abbasi Azad", Amir Markazi]
-description: "This paper shows things. Published in Journal Name, 2012." 
-summary: "This paper shows things using various techniques and data." 
+description: "This paper shows the optimization algorithm to find the position of seismic vibration acturators" 
+summary: "By employing optimally-located actuators, the effectiveness of control system increases, while with an optimal number of actuators, an acceptable level of performance can be achieved with fewer actuators. The method proposed in this paper, simultaneously determines the number and location of actuators, installed in a building, in an optimal sense." 
 cover:
     image: ""
     alt: ""
