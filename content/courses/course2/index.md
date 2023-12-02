@@ -1,14 +1,13 @@
 ---
-title: "A photoalgometer for reproducible and automated pain behavior testing in mice" 
+title: "Course Title 2" 
 date: 2021-06-16
-tages: ["Pain", "nociception", "optogenetics", "withdrawal", "radiant heat"]
-tages: ["thermal", "reproducibility", "automation", "behaviour"]
+tags: ["keyword 4","keyword 5","keyword 6"]
 author: ["Prof. Name 1","Prof. Name 2"]
 description: "This undergraduate course presents many new things." 
 summary: "This undergraduate course presents various methods and many results." 
 cover:
-    image: ""
-    alt: ""
+    image: "course2.png"
+    alt: "Figure caption"
     relative: false
 editPost:
     URL: "https://youtube.com/playlist?list=PL5zEkRHvv2GxHa26QiEdeEybMy0UbdjmW"

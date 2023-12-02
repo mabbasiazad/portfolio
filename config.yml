@@ -68,8 +68,8 @@ params:
           imageTitle: mehdi image
           buttons:
             - name: Papers
-              url: patents/
-            - name: Patents
+              url: papers/
+            - name: Courses
               url: courses/
             - name: Data
               url: data/
