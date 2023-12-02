@@ -68,8 +68,8 @@ params:
           imageTitle: mehdi image
           buttons:
             - name: Papers
-              url: papers/
-            - name: Courses
+              url: patents/
+            - name: Patents
               url: courses/
             - name: Data
               url: data/
@@ -95,8 +95,8 @@ params:
           url: https://www.linkedin.com/in/mazadgole/
         - name: Google Scholar
           url: https://scholar.google.com/citations?user=KQK75p0AAAAJ&hl=en
-        # - name: YouTube
-        #   url: https://www.youtube.com/@pmichaillat
+        - name: YouTube
+          url: https://www.youtube.com/channel/UC3LZuMiLWtLDcC5ufWDgGMg
         - name: GitHub
           url: https://github.com/mabbasiazad
         # - name: Substack
