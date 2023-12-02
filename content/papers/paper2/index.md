@@ -45,9 +45,11 @@ Pain in rodents is often inferred from their withdrawal from noxious stimulation
 
 ---
 
+
+
 ##### Citation
 
-Author 1 and Author 2. Year. "Title." *Journal* Volume (Issue): First page–Last page. https://doi.org/paper_doi.
+Dedek C, Azadgoleh MA, Prescott SA. Reproducible and fully automated testing of nocifensive behavior in mice. Cell Rep Methods. 2023 Nov 14:100650. doi: 10.1016/j.crmeth.2023.100650. Epub ahead of print. PMID: 37992707.
 
 ```BibTeX
 @article{AAYY,
@@ -60,6 +62,7 @@ title ={Title},
 volume = {Volume},
 year = {Year}}
 ```
+
 
 ---
 
