@@ -1,6 +1,6 @@
 ---
-title: "Paper Title 1" 
-date: 2014-03-01
+title: "Optimal assignment of seismic vibration control actuators using genetic algorithm" 
+date: 2014-03-10
 tags: ["Structural control", "Active control", "Optimization", "Methodology", "Evolutionary algorithms"]
 author: ["Mehdi Abbasi Azad", Amir Markazi]
 description: "This paper shows the optimization algorithm to find the position of seismic vibration acturators" 
@@ -10,7 +10,7 @@ cover:
     alt: ""
     relative: false
 editPost:
-    URL: ""
+    URL: "https://api.semanticscholar.org/CorpusID:59053725"
     Text: "International Journal of Civil Engineering"
 
 ---
@@ -37,7 +37,7 @@ multi-objective optimization problem.
 
 <!-- ![](paper1.png) -->
 
----
+<!-- --- -->
 
 ##### Citation
 
