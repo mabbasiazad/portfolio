@@ -91,6 +91,8 @@ params:
         #   url: location/
         # - name: Office Hours
         #   url: officehours/
+        - name: LinkedIn
+          url: https://www.linkedin.com/in/mazadgole/
         - name: Google Scholar
           url: https://scholar.google.com/citations?user=KQK75p0AAAAJ&hl=en
         # - name: YouTube
