@@ -64,6 +64,9 @@ params:
             particularly in developing computational models for protein engineering. 
             <br />
             <br />
+            Click [<u>here</u>](cv.pdf) to download my CV. 
+            <br />
+            <br />
 
           # imageUrl: "my_pic.png"
           imageUrl: "my_pic_formal.jpg"
@@ -89,8 +92,8 @@ params:
               url: search/
     
     socialIcons:
-        - name: CV
-          url: cv.pdf
+        # - name: CV
+        #   url: cv.pdf
         - name: Email
           url: mailto:m32abbas@uwaterloo.ca
         # - name: Location

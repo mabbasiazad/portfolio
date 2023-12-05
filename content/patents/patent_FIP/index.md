@@ -1,6 +1,6 @@
 ---
 title: "Model-based fuzzy control of an auto swing-up furuta inverted pendulum" 
-date: 2014-03-10
+date: 2007
 tags: ["Structural control", "Active control", "Optimization", "Methodology", "Evolutionary algorithms"]
 author: ["Mehdi Abbasi Azad", Amir Markazi]
 description: "This paper shows the optimization algorithm to find the position of seismic vibration acturators" 

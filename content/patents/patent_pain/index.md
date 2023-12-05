@@ -19,7 +19,7 @@ editPost:
 
 ##### Download
 
-+ [Patent (to be uploaded after acceptance)]()
++ [Patent (to be uploaded soon)]()
 + [Code and data](https://github.com/stofe95/ramalgo)
 + Videos
     - [Fully Automated Testing](https://www.youtube.com/watch?v=NirNM9OIvPY)
