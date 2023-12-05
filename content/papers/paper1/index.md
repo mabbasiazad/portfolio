@@ -56,7 +56,7 @@ journal = {International Journal of Civil Engineering}
 }
 ```
 
----
+
 
 <!-- ##### Related material -->
 <!-- 

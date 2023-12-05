@@ -10,8 +10,8 @@ cover:
     alt: ""
     relative: false
 editPost:
-    URL: ""
-    Text: "US patent (18/371.847)"
+    URL: "https://doi.org/10.1016/j.crmeth.2023.100650"
+    Text: "US patent - 18/371.847"
 
 ---
 
@@ -38,4 +38,4 @@ Pain in rodents is often inferred from their withdrawal from noxious stimulation
 ![](pain_patent_fig2.png)
 
 
----
+

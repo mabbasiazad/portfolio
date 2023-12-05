@@ -64,7 +64,6 @@ year = {Year}}
 ```
 
 
----
 
 <!-- ##### Related material -->
 

@@ -1,5 +1,5 @@
 ---
-title: "Patent: Optimal assignment of seismic vibration control actuators using genetic algorithm" 
+title: "Model-based fuzzy control of an auto swing-up furuta inverted pendulum" 
 date: 2014-03-10
 tags: ["Structural control", "Active control", "Optimization", "Methodology", "Evolutionary algorithms"]
 author: ["Mehdi Abbasi Azad", Amir Markazi]
