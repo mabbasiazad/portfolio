@@ -16,8 +16,8 @@ menu:
         - name: Papers
           url: papers/
           weight: 1
-        - name: Papers
-          url: papers/
+        - name: Patents
+          url: patents/
           weight: 2
         # - name: Courses
         #   url: courses/
