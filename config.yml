@@ -16,12 +16,15 @@ menu:
         - name: Papers
           url: papers/
           weight: 1
-        - name: Courses
-          url: courses/
+        - name: Papers
+          url: papers/
           weight: 2
-        - name: Data
-          url: data/
-          weight: 3 
+        # - name: Courses
+        #   url: courses/
+        #   weight: 3
+        # - name: Data
+        #   url: data/
+        #   weight: 4 
         # - name: Newsletter
         #   url: https://pmichaillat.substack.com
         #   weight: 4
@@ -62,17 +65,20 @@ params:
             <br />
             <br />
 
-          imageUrl: "my_pic.png"
+          # imageUrl: "my_pic.png"
+          imageUrl: "my_pic_formal.jpg"
           imageWidth: 160
           imageHeight: 160
           imageTitle: mehdi image
           buttons:
             - name: Papers
               url: papers/
-            - name: Courses
-              url: courses/
-            - name: Data
-              url: data/
+            - name: Patents
+              url: patents/
+            # - name: Courses
+            #   url: courses/
+            # - name: Data
+            #   url: data/
             # - name: Newsletter
             #   url: https://pmichaillat.substack.com
             - name: Tags
