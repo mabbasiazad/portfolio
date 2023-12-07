@@ -22,6 +22,9 @@ menu:
         - name: Posts
           url: posts/
           weight: 3
+        - name: Search
+          url: search/
+          weight: 4
         # - name: Courses
         #   url: courses/
           # weight: 3
@@ -89,10 +92,10 @@ params:
             #   url: data/
             # - name: Newsletter
             #   url: https://pmichaillat.substack.com
-            - name: Tags
-              url: tags/
-            - name: Archive
-              url: archive/
+            # - name: Tags
+            #   url: tags/
+            # - name: Archive
+            #   url: archive/
             - name: Search
               url: search/
     
