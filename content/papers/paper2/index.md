@@ -7,13 +7,9 @@ description: "automated pain testing in mice"
 summary: "Preclinical pain testing traditionally
 utilizes techniques—such as stimulating
 by hand and measuring responses by
-eye—that limit reproducibility. We describe a device for consistent
-stimulation and withdrawal measurement
-with millisecond precision. Testing can be
+eye—that limit reproducibility. Testing can be
 fully automated, increasing
-standardization and throughput while
-objectively quantifying non-evoked
-behaviors." 
+standardization and throughput." 
 cover:
     image: ""
     alt: ""

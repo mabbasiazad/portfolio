@@ -6,9 +6,8 @@ author: ["Mehdi Abbasi Azad", Amir Markazi]
 description: "PC-controlled rotary inverted pendulum" 
 summary: "A new fuzzy controller based on the idea 
 of energy control is proposed, to swing up the inverted pendulum to the upright 
-position. Furthermore, a model-based parallel distributed compensation (PDC) 
-scheme is employed to stabilize the pendulum at its unstable equilibrium point, while 
-the position of the arm is also controlled."
+position- A model-based parallel distributed compensation (PDC) 
+scheme is employed to stabilize the pendulum at its unstable equilibrium point."
 
 cover:
     image: ""
