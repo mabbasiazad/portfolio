@@ -22,8 +22,8 @@ menu:
         - name: Posts
           url: posts/
           weight: 3
-        - name: Search
-          url: search/
+        # - name: Search
+        #   url: search/
           weight: 4
         # - name: Courses
         #   url: courses/
@@ -96,8 +96,8 @@ params:
             #   url: tags/
             # - name: Archive
             #   url: archive/
-            - name: Search
-              url: search/
+            # - name: Search
+            #   url: search/
     
     socialIcons:
         # - name: CV
