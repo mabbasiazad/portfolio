@@ -3,7 +3,8 @@ title: "Optimal assignment of seismic vibration control actuators using genetic 
 date: 2014-03-10
 tags: ["Structural control", "Active control", "Optimization", "Methodology", "Genetic algorithms"]
 author: ["Mehdi Abbasi Azad", Amir Markazi]
-description: "The method proposed in this paper, simultaneously determines the number and location of actuators, installed in a building, in an optimal sense." 
+description: "seismic vibration control"
+summary: "The method proposed in this paper, simultaneously determines the number and location of actuators, installed in a building, in an optimal sense." 
 cover:
     image: ""
     alt: ""
