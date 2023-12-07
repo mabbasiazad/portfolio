@@ -128,7 +128,7 @@ params:
         hiddenInList: false
         hiddenInSingle: true
     label:
-      text: "Mehdi's Blog"
+      text: "Home"
       icon: favicon.ico
       iconHeight: 18
 
