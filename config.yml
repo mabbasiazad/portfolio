@@ -19,6 +19,9 @@ menu:
         - name: Patents
           url: patents/
           weight: 2
+        - name: Posts
+          url: posts/
+          weight: 3
         # - name: Courses
         #   url: courses/
           # weight: 3
@@ -78,6 +81,8 @@ params:
               url: papers/
             - name: Patents
               url: patents/
+            - name: Posts
+              url: posts/
             # - name: Courses
             #   url: courses/
             # - name: Data
