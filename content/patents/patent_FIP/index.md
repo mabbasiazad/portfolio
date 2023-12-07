@@ -4,8 +4,7 @@ date: 2007-01-01
 tags: ["Fuzzy control", " Furuta Inverted Pendulum", "Swing up"]
 author: ["Mehdi Abbasi Azad", Amir Markazi]
 description: "PC-controlled rotary inverted pendulum" 
-summary: "A new fuzzy controller based on the idea 
-of energy control is proposed, to swing up the inverted pendulum to the upright 
+summary: "A new fuzzy controller is proposed to swing up the inverted pendulum to the upright 
 position- Parallel distributed compensation (PDC) 
 is employed to stabilize the pendulum at its unstable equilibrium point."
 

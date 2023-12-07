@@ -13,14 +13,14 @@ taxonomies:
 
 menu:
     main:
-        - name: Papers
-          url: papers/
-          weight: 1
-        - name: Patents
-          url: patents/
-          weight: 2
         - name: Posts
           url: posts/
+          weight: 1
+        - name: Papers
+          url: papers/
+          weight: 2
+        - name: Patents
+          url: patents/
           weight: 3
         # - name: Search
         #   url: search/
@@ -72,7 +72,6 @@ params:
             <br />
             Click [<u>here</u>](cv.pdf) to download my CV. 
             <br />
-            <br />
 
           # imageUrl: "my_pic.png"
           imageUrl: "my_pic_formal.jpg"
@@ -80,12 +79,12 @@ params:
           imageHeight: 160
           imageTitle: mehdi image
           buttons:
+            - name: Posts
+              url: posts/
             - name: Papers
               url: papers/
             - name: Patents
               url: patents/
-            - name: Posts
-              url: posts/
             # - name: Courses
             #   url: courses/
             # - name: Data
