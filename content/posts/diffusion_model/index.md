@@ -1,12 +1,9 @@
 +++
-title = 'Easy-to-Follow Intuition & Math Behind Diffusion Models'
+title = 'Easy-to-Follow Intuition & Math for Diffusion Models'
 date = 2023-11-29T20:03:37-05:00
+author= ["Mehdi Azad"]
 summary = "Diffusion models are defined as a Markov chain of diffusion steps that slowly add random noise to data. Then, they learn to reverse the diffusion process to construct desired data samples from the noise. I have tried to process the math underlying these models in a concise and organized manner."
 +++
-
-
-# Easy-to-Follow Intuition & Math Behind Diffusion Models
-
 
 # Introduction
 
@@ -37,12 +34,12 @@ x_t \sim q(x_t|x_{t-1})
 $$
 
 $$
-\begin{align}
+\begin{aligned}
 x_t &= \sqrt{1 - \beta_{t}}x_{t-1} + \sqrt{\beta_{t}}\epsilon_{t-1} \\\\
 &=\sqrt{\alpha_{t}\alpha_{t-1}}x_{t-2} + \sqrt{1-\alpha_{t}\alpha_{t-1}}\epsilon_{t-2} (*) \\\\
 &= ...\\\\
 &=\sqrt{\bar\alpha_{t}}x_{0} + \sqrt{1-\bar\alpha_{t}}\epsilon_{0}
-\end{align} 
+\end{aligned} 
 $$
 
 
@@ -184,38 +181,34 @@ $$
 $$
 
 $$
-\begin{align}
-L_{t}
-&= \mathbb{E}_{x_0, \epsilon}\frac{1}{2 \Sigma_{\theta}}
-\end{align}
+\begin{aligned}
+L_{t}&= E_{x_0, \epsilon}[\frac{1}{2||\Sigma_{\theta}(x_{t},t)||_{2}^{2}}||\mu(x_{t}, x_{0})-\mu_{\theta}(x_{t},t)||^{2}] \\\\
+&=E_{x_0, \epsilon}[\frac{1}{2||\Sigma_{\theta}||_{2}^{2}}||\frac{1}{\sqrt{\alpha_{t}}}(x_{t}-\frac{1-\alpha_{t}}{\sqrt{1-\bar\alpha_{t}}}\epsilon_{0})-\frac{1}{\sqrt{\alpha_{t}}}(x_{t}-\frac{1-\alpha_{t}}{\sqrt{1-\bar\alpha_{t}}}\epsilon_{\theta}(x_{t},t))||^{2}] \\\\
+&= E_{x_0, \epsilon}[\frac{(1-\alpha_{t})^2}{2\alpha_{t}(1-\bar\alpha_{t})||\Sigma_{\theta}||_{2}^{2}}||\epsilon_{t}-\epsilon_{\theta}(x_{t},t)||^2]\\\\
+&= E_{x_0, \epsilon}[\frac{(1-\alpha_{t})^2}{2\alpha_{t}(1-\bar\alpha_{t})||\Sigma_{\theta}||_{2}^{2}}||\epsilon_{t}-\epsilon_{\theta}(\sqrt{\bar\alpha_{t}}x_{0} + \sqrt{1 - \bar\alpha_{t}}\epsilon_{0},t)||^2]
+\end{aligned}
 $$
 
-<!-- \frac{1}{2||\Sigma_{\theta}(x_{t},t)||_{2}^{2}}||\mu(x_{t}, x_{0} -\mu_{\theta}(x_{t},t)||^{2} -->
-
 
 $$
-\begin{align}
-x_t &= \sqrt{1 - \beta_{t}}x_{t-1} + \sqrt{\beta_{t}}\epsilon_{t-1} \\\\
-&=\sqrt{\alpha_{t}\alpha_{t-1}}x_{t-2} + \sqrt{1-\alpha_{t}\alpha_{t-1}}\epsilon_{t-2} (*) \\\\
-&= ...\\\\
-&=\sqrt{\bar\alpha_{t}}x_{0} + \sqrt{1-\bar\alpha_{t}}\epsilon_{0}
-\end{align} 
+\begin{aligned}
+L_{t}&= E_{x_0, \epsilon}[\frac{1}{2||\Sigma_{\theta}(x_{t},t)||_{2}^{2}}||\mu(x_{t}, x_{0})-\mu_{\theta}(x_{t},t)||^{2}] \\\\
+&=E_{x_0, \epsilon}[\frac{1}{2||\Sigma_{\theta}||_{2}^{2}}||\frac{1}{\sqrt{\alpha_{t}}}(x_{t}-\frac{1-\alpha_{t}}{\sqrt{1-\bar\alpha_{t}}}\epsilon_{0})-\frac{1}{\sqrt{\alpha_{t}}}(x_{t}-\frac{1-\alpha_{t}}{\sqrt{1-\bar\alpha_{t}}}\epsilon_{\theta}(x_{t},t))||^{2}] \\\\
+&= E_{x_0, \epsilon}[\frac{(1-\alpha_{t})^2}{2\alpha_{t}(1-\bar\alpha_{t})||\Sigma_{\theta}||_{2}^{2}}||\epsilon_{t}-\epsilon_{\theta}(x_{t},t)||^2]\\\\
+&= E_{x_0, \epsilon}[\frac{(1-\alpha_{t})^2}{2\alpha_{t}(1-\bar\alpha_{t})||\Sigma_{\theta}||_{2}^{2}}||\epsilon_{t}-\epsilon_{\theta}(\sqrt{\bar\alpha_{t}}x_{0} + \sqrt{1 - \bar\alpha_{t}}\epsilon_{0},t)||^2]
+\end{aligned}
 $$
-
-% &=\mathbb{E}_{x_0, \epsilon}[\frac{1}{2||\Sigma_{\theta}||_{2}^{2}}||\frac{1}{\sqrt{\alpha_{t}}}(x_{t}-\frac{1-\alpha_{t}}{\sqrt{1-\bar\alpha_{t}}}\epsilon_{0})-\frac{1}{\sqrt{\alpha_{t}}}(x_{t}-\frac{1-\alpha_{t}}{\sqrt{1-\bar\alpha_{t}}}\epsilon_{\theta}(x_{t},t))||^{2}] \\\\
-% &= \mathbb{E}_{x_0, \epsilon}[\frac{(1-\alpha_{t})^2}{2\alpha_{t}(1-\bar\alpha_{t})||\Sigma_{\theta}||_{2}^{2}}||\epsilon_{t}-\epsilon_{\theta}(x_{t},t)||^2]\\\\
-% &= \mathbb{E}_{x_0, \epsilon}[\frac{(1-\alpha_{t})^2}{2\alpha_{t}(1-\bar\alpha_{t})||\Sigma_{\theta}||_{2}^{2}}||\epsilon_{t}-\epsilon_{\theta}(\sqrt{\bar\alpha_{t}}x_{0} + \sqrt{1 - \bar\alpha_{t}}\epsilon_{0},t)||^2]
-
 
 **Simplifiction:** Empirically, training a diffusion model works better with a simplified objective that ignores the weighting term
 
 $$
-L_{t}^{simple} = \mathbb{E}_{t \sim [1, T], x_{0}, \epsilon_{t}}[||\epsilon_{t}-\epsilon_{\theta}(\sqrt{\bar\alpha_{t}}x_{0} + \sqrt{1 - \bar\alpha_{t}}\epsilon_{0},t)||^2]
+L_{t}^{simple} = E_{t \sim [1, T], x_{0}, \epsilon_{t}}[||\epsilon_{t}-\epsilon_{\theta}(\sqrt{\bar\alpha_{t}}x_{0} + \sqrt{1 - \bar\alpha_{t}}\epsilon_{0},t)||^2]
 $$
+
 
 ![Untitled](Easy-to-Follow%20Intuition%20&%20Math%20Behind%20Diffusion%20M%203778104bd5ea46c8b2d272efec24bc2a/Untitled%202.png)
 
-## Third Interpretation of Reverse Process: $**s_{\theta}(x_{t},t) \approx \nabla_{x_{t}}\log p(x_{t}$ )**
+## Third Interpretation of Reverse Process: $s_{\theta}(x_{t},t) \approx \nabla_{x_{t}}\log p(x_{t})$ 
 
 To derive the third common interpretation of Diffusion Models, we appeal to Tweedie’s Formula. In English, Tweedie’s Formula states that the true mean of an exponential family distribution, given samples drawn from it, can be estimated by the maximum likelihood estimate of the samples (aka empirical mean) plus some correction term involving the score of the estimate. In the case of just one observed sample, the empirical mean is just the sample itself. 
 
@@ -339,8 +332,8 @@ Knowing this, then we can write:
 
 $$
 \begin{aligned}
-s_{\theta}(x_{t},t) = \nabla_{x_{t}}\log q(x_{t})&=\mathbb{E}_{q(x_{0})}[\nabla_{x_{t}}\log q(x_{t}|x_{0})] \\\\
-&=\mathbb{E}_{q(x_{0})}[-\frac{\epsilon_{\theta}(x_{t},t)}{\sqrt{1-\bar\alpha_{t}}}]\\\\
+s_{\theta}(x_{t},t) = \nabla_{x_{t}}\log q(x_{t})&=E_{q(x_{0})}[\nabla_{x_{t}}\log q(x_{t}|x_{0})] \\\\
+&=E_{q(x_{0})}[-\frac{\epsilon_{\theta}(x_{t},t)}{\sqrt{1-\bar\alpha_{t}}}]\\\\
 &=-\color{cyan} \frac{\epsilon_{\theta}(x_{t},t)}{\sqrt{1-\bar\alpha_{t}}}
 \end{aligned}
 $$
