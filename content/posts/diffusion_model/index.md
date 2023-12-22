@@ -9,7 +9,7 @@ summary = "Diffusion models are defined as a Markov chain of diffusion steps tha
 
 As a brief summary, diffusion models are defined as a Markov chain of diffusion steps that slowly add random noise to data. Then, they learn to reverse the diffusion process to construct desired data samples from the noise. In this set of notes, I have tried to process the math underlying these models in a concise and organized manner.
 
-![Untitled](Easy-to-Follow%20Intuition%20&%20Math%20Behind%20Diffusion%20M%203778104bd5ea46c8b2d272efec24bc2a/Untitled.png)
+![overview](./overview.png)
 
 # Forward diffusion
 
@@ -108,11 +108,11 @@ $$
 ## **First Interpretation of Revese Process: $x_{\theta}(x_{t},t) \approx x_{}0$**
 
 <aside>
-💡 **The reverse diffiusion process can be intutively defined as; given a noisy observation $x_{t}$, we first make a prediction corresponding $x_{0}$, then we use it to obtain a sample $x_{t-1}$through the reverse conditional distribution** $q(x_{t-1}|x_{t}, x_{0})$
+💡 The reverse diffiusion process can be intutively defined as; given a noisy observation $x_{t}$, we first make a prediction corresponding $x_{0}$, then we use it to obtain a sample $x_{t-1}$through the reverse conditional distribution $q(x_{t-1}|x_{t}, x_{0})$
 
 </aside>
 
-![Untitled](Easy-to-Follow%20Intuition%20&%20Math%20Behind%20Diffusion%20M%203778104bd5ea46c8b2d272efec24bc2a/Untitled%201.png)
+![algorithm_1](./algorithm_1.png)
 
 <aside>
 💡 A Diffusion Model can be trained by simply learning a neural network to predict the original natural image $x_{0}$ from an arbitrary noised version $x_{t}$ and its time index t. However, $x_{0}$ has two other equivalent parameterizations, which leads to two further interpretations for a diffusion model.
@@ -182,22 +182,13 @@ $$
 
 $$
 \begin{aligned}
-L_{t}&= E_{x_0, \epsilon}[\frac{1}{2||\Sigma_{\theta}(x_{t},t)||_{2}^{2}}||\mu(x_{t}, x_{0})-\mu_{\theta}(x_{t},t)||^{2}] \\\\
-&=E_{x_0, \epsilon}[\frac{1}{2||\Sigma_{\theta}||_{2}^{2}}||\frac{1}{\sqrt{\alpha_{t}}}(x_{t}-\frac{1-\alpha_{t}}{\sqrt{1-\bar\alpha_{t}}}\epsilon_{0})-\frac{1}{\sqrt{\alpha_{t}}}(x_{t}-\frac{1-\alpha_{t}}{\sqrt{1-\bar\alpha_{t}}}\epsilon_{\theta}(x_{t},t))||^{2}] \\\\
-&= E_{x_0, \epsilon}[\frac{(1-\alpha_{t})^2}{2\alpha_{t}(1-\bar\alpha_{t})||\Sigma_{\theta}||_{2}^{2}}||\epsilon_{t}-\epsilon_{\theta}(x_{t},t)||^2]\\\\
-&= E_{x_0, \epsilon}[\frac{(1-\alpha_{t})^2}{2\alpha_{t}(1-\bar\alpha_{t})||\Sigma_{\theta}||_{2}^{2}}||\epsilon_{t}-\epsilon_{\theta}(\sqrt{\bar\alpha_{t}}x_{0} + \sqrt{1 - \bar\alpha_{t}}\epsilon_{0},t)||^2]
-\end{aligned}
+L_{t} &= E_{x_0, \epsilon}[\frac{1}{2||\Sigma_{\theta}(x_{t},t)||^{2}}||\mu(x_{t}, x_{0})-\mu_{\theta}(x_{t},t)||^{2}] \\\\
+&=E_{x_0, \epsilon}[\frac{1}{2||\Sigma_{\theta}||^{2}}||\frac{1}{\sqrt{\alpha_{t}}}(x_{t}-\frac{1-\alpha_{t}}{\sqrt{1-\bar\alpha_{t}}}\epsilon_{0})-\frac{1}{\sqrt{\alpha_{t}}}(x_{t}-\frac{1-\alpha_{t}}{\sqrt{1-\bar\alpha_{t}}}\epsilon_{\theta}(x_{t},t))||^{2}] \\\\
+&= E_{x_0, \epsilon}[\frac{(1-\alpha_{t})^2}{2\alpha_{t}(1-\bar\alpha_{t})||\Sigma_{\theta}||^{2}}||\epsilon_{t}-\epsilon_{\theta}(x_{t},t)||^2]\\\\
+&= E_{x_0, \epsilon}[\frac{(1-\alpha_{t})^2}{2\alpha_{t}(1-\bar\alpha_{t})||\Sigma_{\theta}||^{2}}||\epsilon_{t}-\epsilon_{\theta}(\sqrt{\bar\alpha_{t}}x_{0} + \sqrt{1 - \bar\alpha_{t}}\epsilon_{0},t)||^2]
+\end{aligned} 
 $$
 
-
-$$
-\begin{aligned}
-L_{t}&= E_{x_0, \epsilon}[\frac{1}{2||\Sigma_{\theta}(x_{t},t)||_{2}^{2}}||\mu(x_{t}, x_{0})-\mu_{\theta}(x_{t},t)||^{2}] \\\\
-&=E_{x_0, \epsilon}[\frac{1}{2||\Sigma_{\theta}||_{2}^{2}}||\frac{1}{\sqrt{\alpha_{t}}}(x_{t}-\frac{1-\alpha_{t}}{\sqrt{1-\bar\alpha_{t}}}\epsilon_{0})-\frac{1}{\sqrt{\alpha_{t}}}(x_{t}-\frac{1-\alpha_{t}}{\sqrt{1-\bar\alpha_{t}}}\epsilon_{\theta}(x_{t},t))||^{2}] \\\\
-&= E_{x_0, \epsilon}[\frac{(1-\alpha_{t})^2}{2\alpha_{t}(1-\bar\alpha_{t})||\Sigma_{\theta}||_{2}^{2}}||\epsilon_{t}-\epsilon_{\theta}(x_{t},t)||^2]\\\\
-&= E_{x_0, \epsilon}[\frac{(1-\alpha_{t})^2}{2\alpha_{t}(1-\bar\alpha_{t})||\Sigma_{\theta}||_{2}^{2}}||\epsilon_{t}-\epsilon_{\theta}(\sqrt{\bar\alpha_{t}}x_{0} + \sqrt{1 - \bar\alpha_{t}}\epsilon_{0},t)||^2]
-\end{aligned}
-$$
 
 **Simplifiction:** Empirically, training a diffusion model works better with a simplified objective that ignores the weighting term
 
@@ -206,7 +197,7 @@ L_{t}^{simple} = E_{t \sim [1, T], x_{0}, \epsilon_{t}}[||\epsilon_{t}-\epsilon_
 $$
 
 
-![Untitled](Easy-to-Follow%20Intuition%20&%20Math%20Behind%20Diffusion%20M%203778104bd5ea46c8b2d272efec24bc2a/Untitled%202.png)
+![algorithm_2](./algorithm_2.png)
 
 ## Third Interpretation of Reverse Process: $s_{\theta}(x_{t},t) \approx \nabla_{x_{t}}\log p(x_{t})$ 
 
@@ -391,15 +382,14 @@ $$
 
 ## CLIP Guidance
 
-refer to the page below for CLIP
+TBD
 
-[CLIP](Easy-to-Follow%20Intuition%20&%20Math%20Behind%20Diffusion%20M%203778104bd5ea46c8b2d272efec24bc2a/CLIP%209735ffa85a8a41e494b3c2feea7e06eb.md)
 
 # Stable Diffusion
 
-refer to the page below for stable diffusion
+TBD
 
-[Stable Diffusion](Easy-to-Follow%20Intuition%20&%20Math%20Behind%20Diffusion%20M%203778104bd5ea46c8b2d272efec24bc2a/Stable%20Diffusion%20780b1215cdbe4247bee2bf0568000902.md)
+
 
 # Summary
 
