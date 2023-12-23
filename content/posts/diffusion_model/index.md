@@ -1,6 +1,6 @@
 +++
 title = 'Easy-to-Follow Intuition & Math for Diffusion Models'
-date = 2023-11-29T20:03:37-05:00
+date = 2023-12-25
 author= ["Mehdi Azad"]
 summary = "Diffusion models are defined as a Markov chain of diffusion steps that slowly add random noise to data. Then, they learn to reverse the diffusion process to construct desired data samples from the noise. I have tried to process the math underlying these models in a concise and organized manner."
 +++
