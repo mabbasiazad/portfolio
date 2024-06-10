@@ -24,7 +24,7 @@ no activation function => nn.CrossEntropyLoss
 
 F.log_softmax  => nn.NLLLoss
 
-softmax => log => NLLLoss      # not efficient
+softmax => log => nn.NLLLoss      # not efficient
 
 -------------------------------------------------
 
@@ -32,5 +32,5 @@ softmax => log => NLLLoss      # not efficient
 
 no activation function => nn.BCEWithLogitsLoss
 
-sigmoid  => BCELoss   # not efficient
+sigmoid  => nn.BCELoss   # not efficient
 
