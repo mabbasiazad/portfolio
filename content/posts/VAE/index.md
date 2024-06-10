@@ -33,9 +33,11 @@ There are some considerations here:
     p(x)= \sum_{z} p(z)p(x|z)
     $$
     
-    Note: In order to see the output of the model as a distribution, you can assume $f(Z)$ as the mean value of that distribution and get the variance equal to one.\\
+    Note: In order to see the output of the model as a distribution, you can assume $f(Z)$ as the mean value of that distribution and get the variance equal to one.
     
-    I can use Mont Carlo technique to sample from $z$ space and approximate the summation above. However, in high dimentional space the summation is not tractable. On the other hands for most of the $z$s, $p(x|z)$ is equal to zero. So, it would be intresting if I could find the $z$s which are likely to generate $x.$ \\
+    
+    I can use Mont Carlo technique to sample from $z$ space and approximate the summation above. However, in high dimentional space the summation is not tractable. On the other hands for most of the $z$s, $p(x|z)$ is equal to zero. So, it would be intresting if I could find the $z$s which are likely to generate $x.$ 
+
     
     The VAE solves these problems by sampling $z$ from a new distribution $q(z|x)$, which is jointly optimised with the generative model. This focuses the optimisation on regions of high probability (i.e. latent codes that are likely to have generated $x$).
     
