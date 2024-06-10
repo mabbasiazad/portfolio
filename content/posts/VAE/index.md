@@ -33,6 +33,8 @@ There are some considerations here:
     p(x)= \sum_{z} p(z)p(x|z)
     $$
     
+    Note: In order to see the output of the model as a distribution, you can assume $f(Z)$ as the mean value of that distribution and get the variance of equal to one.
+    
     I can use Mont Carlo technique to sample from $z$ space and approximate the summation above. However, in high dimentional space the summation is not tractable. On the other hands for most of the $z$s, $p(x|z)$ is equal to zero. So, it would be intresting if I could find the $z$s which are likely to generate $x.$ 
     
     The VAE solves these problems by sampling $z$ from a new distribution $q(z|x)$, which is jointly optimised with the generative model. This focuses the optimisation on regions of high probability (i.e. latent codes that are likely to have generated $x$).
@@ -44,14 +46,14 @@ There are some considerations here:
     $$
     
     $$
-    p(x) = \int q_{\phi}(x|z) \frac{p_{\theta}(x|z)p(z)}{q_{\phi}(x|z)}
+    p(x) = \int q_{\phi}(z|x) \frac{p_{\theta}(x|z)p(z)}{q_{\phi}(x|z)}
     $$
     
     $$
     \log p(x)= \log E_{z \sim q_{\phi}(z|x)} \Biggl[ \frac{p_{\theta}(x|z)p(z)}{q_{\phi}(x|z)} \Biggr]
     $$
     
-    following Jensen’s inequality:
+    following Jensen’s inequality, i.e., $ E(Ln(X)) \leq Ln(E(X))$:
     
     $$
     \log p(x) \geq E_{z \sim q_{\phi}(z|x)} \Biggl[ \log \frac{p_{\theta}(x|z)p(z)}{q_{\phi}(x|z)} \Biggr]
