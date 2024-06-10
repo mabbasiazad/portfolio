@@ -33,40 +33,40 @@ There are some considerations here:
     p(x)= \sum_{z} p(z)p(x|z)
     $$
     
-Important Note: In order to see the output of the model as a distribution, you can assume $f(Z)$ as the mean value of the distribution with the variance equal to one.
-
+Note: In order to see the output of the model as a distribution, you can assume $f(Z)$ as the mean value of that distribution with the variance equal to one.
+    
 I can use Mont Carlo technique to sample from $z$ space and approximate the summation above. However, in high dimentional space the summation is not tractable. On the other hands for most of the $z$s, $p(x|z)$ is equal to zero. So, it would be intresting if I could find the $z$s which are likely to generate $x.$ 
-
+    
 The VAE solves these problems by sampling $z$ from a new distribution $q(z|x)$, which is jointly optimised with the generative model. This focuses the optimisation on regions of high probability (i.e. latent codes that are likely to have generated $x$).
     
-    ![VAE](./VAE.png)
+![VAE](./VAE.png)
     
-    $$
-    p(x) = \int_{z}p_{\theta}(x|z)p(z)
-    $$
+$$
+p(x) = \int_{z}p_{\theta}(x|z)p(z)
+$$
     
-    $$
-    p(x) = \int q_{\phi}(z|x) \frac{p_{\theta}(x|z)p(z)}{q_{\phi}(x|z)}
-    $$
+$$
+p(x) = \int q_{\phi}(z|x) \frac{p_{\theta}(x|z)p(z)}{q_{\phi}(x|z)}
+$$
     
-    $$
-    \log p(x)= \log E_{z \sim q_{\phi}(z|x)} \Biggl[ \frac{p_{\theta}(x|z)p(z)}{q_{\phi}(x|z)} \Biggr]
-    $$
+$$
+\log p(x)= \log E_{z \sim q_{\phi}(z|x)} \Biggl[ \frac{p_{\theta}(x|z)p(z)}{q_{\phi}(x|z)} \Biggr]
+$$
     
-    following Jensen’s inequality, i.e., $ E(Ln(X)) \leq Ln(E(X))$:
+following Jensen’s inequality, i.e., $ E(Ln(X)) \leq Ln(E(X))$:
     
-    $$
-    \log p(x) \geq E_{z \sim q_{\phi}(z|x)} \Biggl[ \log \frac{p_{\theta}(x|z)p(z)}{q_{\phi}(x|z)} \Biggr]
-    $$
+$$
+\log p(x) \geq E_{z \sim q_{\phi}(z|x)} \Biggl[ \log \frac{p_{\theta}(x|z)p(z)}{q_{\phi}(x|z)} \Biggr]
+$$
     
-    The right-hand side of this inequality is the evidence lower-bound (ELBO). 
+The right-hand side of this inequality is the evidence lower-bound (ELBO). 
     
-    The ELBO provides a joint optimisation objective, which simultaneously updates the variational posterior $q(z|x)$ and likelihood model $p(x|z)$. 
+The ELBO provides a joint optimisation objective, which simultaneously updates the variational posterior $q(z|x)$ and likelihood model $p(x|z)$. 
     
-    We can simplify the above equation: 
+We can simplify the above equation: 
     
-    $$
-    \log p(x) \geq E_{z \sim q_{\phi}(z|x)} \Biggl[ \log \frac{p(z)}{q_{\phi}(x|z)} \Biggr] + E_{z \sim q_{\phi}(z|x)} \Biggl[ \log p_{\theta}(x|z) \Biggr]
-    $$
+$$
+\log p(x) \geq E_{z \sim q_{\phi}(z|x)} \Biggl[ \log \frac{p(z)}{q_{\phi}(x|z)} \Biggr] + E_{z \sim q_{\phi}(z|x)} \Biggl[ \log p_{\theta}(x|z) \Biggr]
+$$
     
-    The first term of ELBO is the KL divergence between $q(z|x)$ and normal distribution, and the second term is reconstruction error.
+The first term of ELBO is the KL divergence between $q(z|x)$ and normal distribution, and the second term is reconstruction error.
