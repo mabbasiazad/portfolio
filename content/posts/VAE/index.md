@@ -1,5 +1,5 @@
 +++
-title = 'Looking at VAE from Diffetent Perspective'
+title = 'Looking at VAE from Different Perspective'
 date = 2023-12-10
 author= ["Mehdi Azad"]
 summary = "This post explores VAE architecture starting from manifold hypothesis. Then, I provide minimum math to derive ELBO loss."
