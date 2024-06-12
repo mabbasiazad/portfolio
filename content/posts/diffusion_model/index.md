@@ -107,7 +107,7 @@ $$
 
 <details>
     <summary> 
-        # **First Interpretation of Revese Process: $x_{\theta}(x_{t},t) \approx x_{}0$** 
+        # First Interpretation of Revese Process: $x_{\theta}(x_{t},t) \approx x_{}0$ 
     </summary>
 
     <aside>
