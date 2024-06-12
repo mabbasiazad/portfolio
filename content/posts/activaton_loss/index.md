@@ -1,5 +1,5 @@
 +++
-title = 'Activation Function of Last Layer ⇒ Loss Fuction'
+title = 'Compatible Activation and Loss Functions'
 date = 2023-11-01
 author= ["Mehdi Azad"]
 summary = "Choosing loss function and last layer activation function for neural network "
@@ -20,17 +20,17 @@ This variation in implementation necessitates choosing compatible activation and
 
 ## multi-class classificatoin
 
-no activation function => nn.CrossEntropyLoss
+no activation function => `torch.nn.CrossEntropyLoss`
 
-F.log_softmax  => nn.NLLLoss
+`torch.nn.LogSoftmax`  => `torch.nn.NLLLoss`
 
-softmax => log => nn.NLLLoss      # not efficient
+`torch.nn.Softmax` => `torch.log` => `torch.nn.NLLLoss`      # not efficient
 
 -------------------------------------------------
 
 ## binary classification
 
-no activation function => nn.BCEWithLogitsLoss
+no activation function => `torch.nn.BCEWithLogitsLoss`
 
-sigmoid  => nn.BCELoss   # not efficient
+`torch.nn.Sigmoid`  => `torch.nn.BCELoss`   # not efficient
 
