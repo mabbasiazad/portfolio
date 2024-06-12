@@ -105,21 +105,19 @@ $$
 }
 $$
 
-<details>
-    <summary>## **First Interpretation of Revese Process: $x_{\theta}(x_{t},t) \approx x_{}0$**</summayy>
+## **First Interpretation of Revese Process: $x_{\theta}(x_{t},t) \approx x_{}0$**
 
-    
-    💡 The reverse diffiusion process can be intutively defined as; given a noisy observation $x_{t}$, we first make a prediction corresponding $x_{0}$, then we use it to obtain a sample $x_{t-1}$through the reverse conditional distribution $q(x_{t-1}|x_{t}, x_{0})$
+<aside>
+💡 The reverse diffiusion process can be intutively defined as; given a noisy observation $x_{t}$, we first make a prediction corresponding $x_{0}$, then we use it to obtain a sample $x_{t-1}$through the reverse conditional distribution $q(x_{t-1}|x_{t}, x_{0})$
 
-    
+</aside>
 
-    ![algorithm_1](./algorithm_1.png)
+![algorithm_1](./algorithm_1.png)
 
-    
-    💡 A Diffusion Model can be trained by simply learning a neural network to predict the original natural image $x_{0}$ from an arbitrary noised version $x_{t}$ and its time index t. However, $x_{0}$ has two other equivalent parameterizations, which leads to two further interpretations for a diffusion model.
+<aside>
+💡 A Diffusion Model can be trained by simply learning a neural network to predict the original natural image $x_{0}$ from an arbitrary noised version $x_{t}$ and its time index t. However, $x_{0}$ has two other equivalent parameterizations, which leads to two further interpretations for a diffusion model.
 
-    
-</details>
+</aside>
 
 ## **Second Interpretation of Revese Process: $\epsilon_{\theta}(x_{t},t) \approx \epsilon_{0}$**
 
