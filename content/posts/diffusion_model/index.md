@@ -49,7 +49,7 @@ $$
 
 **Note:** Since all timestep have the same Gaussian noise we will only use the symbol $\epsilon$
 
-(*) recall if we merge two Guassians $\mathcal{N}(0, \sigma_{1}^2I)$ and  $\mathcal{N}(0, \sigma_{2}^2I)$ the new distribution is $\mathcal{N}(0, (\sigma_{1}^2+\sigma_{2}^2)I)$
+(*) recall if we merge two independant Guassians $\mathcal{N}(0, \sigma_{1}^2I)$ and  $\mathcal{N}(0, \sigma_{2}^2I)$ the new distribution is $\mathcal{N}(0, (\sigma_{1}^2+\sigma_{2}^2)I)$
 
 So, use the following distribution to sample $x_{t}$
 
