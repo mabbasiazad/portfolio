@@ -106,9 +106,7 @@ $$
 $$
 
 <details>
-    <summary> 
-        # First Interpretation of Revese Process: $x_{\theta}(x_{t},t) \approx x_{}0$ 
-    </summary>
+    <summary>## **First Interpretation of Revese Process: $x_{\theta}(x_{t},t) \approx x_{}0$**</summayy>
 
     <aside>
     💡 The reverse diffiusion process can be intutively defined as; given a noisy observation $x_{t}$, we first make a prediction corresponding $x_{0}$, then we use it to obtain a sample $x_{t-1}$through the reverse conditional distribution $q(x_{t-1}|x_{t}, x_{0})$
