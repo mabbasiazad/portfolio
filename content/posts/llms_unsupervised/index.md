@@ -1,10 +1,16 @@
 
 +++
-title = 'LLMs Unsupervised Learning'
+title = 'LLMs' (Un)supervised Learning'
 date = 2024-06-14
 author= ["Mehdi Azad"]
-summary = "Pre-training is an unsupervised learning process that helps models understand language patterns from large datasets, creating foundation models that can be fine-tuned for supervised tasks. Transformer models include three variants, each trained with specific self-supervised tasks."
+summary = "Which part of LLMs is trained in an unsupervised manner and which part uses supervised learning?"
 +++
+
+# Introduction
+
+LLMs are trained in both supervised and unsupervised manners. The output of unsupervised training are models known as foundation models. These models can later be fine-tuned in a supervised manner to perform more specific tasks. The main unsupervised tasks are: (1) Masked Language Modeling (MLM), where the training objective is to predict the masked tokens in order to reconstruct the original sentence, and (2) Causal Language Modeling (CLM), where the objective is to predict the next token based on the previous sequence of tokens.
+
+Having the foundation models trained in these unsupervised tasks, we can perform more specific tasks such as summarization or translation by using a labeled dataset and updating the foundation models by comparing the model's output to the ground truth labels.
 
 # Pre-training is an unsupervised learning process
 
@@ -69,9 +75,32 @@ For T5 model the  ***sequence*** of the tokens in the input are masked. Those ma
 
 ![Span](./Span.png)
 
-# Summary
+# Summary of Unsupervised Tasks
 
 ![summary](./summary.png)
+
+# Fine tuning is a supervised learning process
+
+Some of the specific tasks to be done by LLMs are:
+
+- Classification tasks
+    - Sentiment analysis
+    - Named entity recognition
+    - Word classification
+- Text generation
+- Sequence-to-sequence tasks
+    - Translation
+    - Question answering
+    - Text summarization
+
+We need to fine-tune the foundation models in a supervised manner to perform these tasks.
+
+For example, in the case of Sentiment Analysis:
+
+- We can take an encoder model such as BERT, add a classification head to it, and then train the classifier head.
+- Alternatively, we can use an encoder-decoder or decoder-based model to generate Positive/Negative labels autoregressively, as shown below:
+
+![finetune](./finetune.png)
 
 # Reference
 
