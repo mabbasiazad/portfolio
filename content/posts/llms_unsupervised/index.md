@@ -1,6 +1,6 @@
 
 +++
-title = 'LLMs' (Un)supervised Learning'
+title = 'LLMs Unsupervised Learning'
 date = 2024-06-14
 author= ["Mehdi Azad"]
 summary = "Which part of LLMs is trained in an unsupervised manner and which part uses supervised learning?"
@@ -75,7 +75,7 @@ For T5 model the  ***sequence*** of the tokens in the input are masked. Those ma
 
 ![Span](./Span.png)
 
-# Summary of Unsupervised Tasks
+# Summary
 
 ![summary](./summary.png)
 
@@ -101,6 +101,7 @@ For example, in the case of Sentiment Analysis:
 - Alternatively, we can use an encoder-decoder or decoder-based model to generate Positive/Negative labels autoregressively, as shown below:
 
 ![finetune](./finetune.png)
+
 
 # Reference
 
