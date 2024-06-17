@@ -1,6 +1,6 @@
 
 +++
-title = 'LLMs Unsupervised Learning'
+title = "LLMs' (Un)supervised Learning"
 date = 2024-06-14
 author= ["Mehdi Azad"]
 summary = "Which part of LLMs is trained in an unsupervised manner and which part uses supervised learning?"
