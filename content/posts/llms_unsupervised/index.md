@@ -3,14 +3,14 @@
 title = "LLMs' (Un)supervised Learning"
 date = 2024-06-14
 author= ["Mehdi Azad"]
-summary = "Which part of LLMs is trained in an unsupervised manner and which part uses supervised learning?"
+summary = "Which Parts of LLMs Are Trained Unsupervised vs. Supervised?"
 +++
 
 # Introduction
 
-LLMs are trained in both supervised and unsupervised manners. The output of unsupervised training are models known as foundation models. These models can later be fine-tuned in a supervised manner to perform more specific tasks. The main unsupervised tasks are: (1) Masked Language Modeling (MLM), where the training objective is to predict the masked tokens in order to reconstruct the original sentence, and (2) Causal Language Modeling (CLM), where the objective is to predict the next token based on the previous sequence of tokens.
+LLMs are trained in both supervised and unsupervised manners. The output of unsupervised training is models known as foundation models. These models can later be fine-tuned in a supervised manner to perform more specific tasks. The main unsupervised tasks are: (1) Masked Language Modeling (MLM), where the training objective is to predict the masked tokens to reconstruct the original sentence, and (2) Causal Language Modeling (CLM), where the objective is to predict the next token based on the previous sequence of tokens.
 
-Having the foundation models trained in these unsupervised tasks, we can perform more specific tasks such as summarization or translation by using a labeled dataset and updating the foundation models by comparing the model's output to the ground truth labels.
+Once the foundation models are trained with these unsupervised tasks, we can use labeled datasets to perform specific tasks such as summarization or translation by updating the foundation models and comparing their outputs to the ground truth labels.
 
 # Pre-training is an unsupervised learning process
 
