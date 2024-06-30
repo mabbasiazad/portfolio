@@ -69,4 +69,6 @@ $$
 \log p(x) \geq E_{z \sim q_{\phi}(z|x)} \Biggl[ \log \frac{p(z)}{q_{\phi}(x|z)} \Biggr] + E_{z \sim q_{\phi}(z|x)} \Biggl[ \log p_{\theta}(x|z) \Biggr]
 $$
     
+Note: The goal is to maximize the right-hand side of the equation. However, since the neural network solves a minimization problem, we aim to minimize the negative of the right-hand side of the equation.
+
 The first term of ELBO is the KL divergence between $q(z|x)$ and normal distribution, and the second term is reconstruction error.
