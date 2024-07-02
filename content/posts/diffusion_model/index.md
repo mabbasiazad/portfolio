@@ -69,6 +69,10 @@ $$
 
 we can afford larger update step when the sample gets noisier so $\beta_{1} < \beta_{2} < ...<\beta_{T}$ or $\bar\alpha_{1}>\bar\alpha_{2}>...>\bar\alpha_{T}$ 
 
+<p align="center">
+<img src="./alpa_beta_scheduler.png" width=350 height=250>
+</p>
+
 # Reverse Diffusion Process
 
 sampling process = generation process = reverse diffusion 
