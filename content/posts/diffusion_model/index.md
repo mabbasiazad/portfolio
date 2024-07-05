@@ -27,7 +27,7 @@ $$
 
 ****The reparameterization trick: tractable closed-form sampling at any timestep****
 
-We don’t have to add noise to $x_{0}$ for $t$ time step in order to get $x_{t}$. We can sample $x_{t}$ at any arbitrary time step in a closed loop form using reparametrization trick.{ 
+We don’t have to add noise to $x_{0}$ for $t$ time step in order to get $x_{t}$. We can sample $x_{t}$ at any arbitrary time step in a closed loop form using reparametrization trick.
 
 $$
 x_t \sim q(x_t|x_{t-1})
@@ -93,14 +93,16 @@ $$
 p(x_{0:T}) = p(x_{T})\prod_{t=1}^{T}p(x_{t-1}|x_{t})
 $$
 
-It is northworthy that the reverse conditional probability is tractable when conditioned on $x_{0}$
+It is northworthy that the reverse conditional probability is tractable when conditioned on $x_{0}$.
 
 $$
 \boxed{q(x_{t-1}|x_{t}, x_{0}) =\mathcal{N}(x_{t-1};\tilde\mu_{t}(x_{t}, x_{0}), \tilde\beta_{t}I)} \\
 $$
 
 $$
+\boxed{
 \tilde\beta_{t}=\frac{1-\bar\alpha_{t-1}}{1-\bar\alpha_{t}}\beta_{t}
+}
 $$
 
 $$
@@ -125,7 +127,6 @@ $$
 
 ## **Second Interpretation of Revese Process: $\epsilon_{\theta}(x_{t},t) \approx \epsilon_{0}$**
 
-Note: We are going to study this interpretation with more detail
 
 Thanks to the nice property of reparametrization trick we can define $x_{0}$ with respect $\epsilon_{t}=\epsilon_{0}$
 
@@ -136,6 +137,8 @@ $$
 \therefore x_{0} = \frac{1}{\sqrt{\bar\alpha_{t}}}(x_{t} - \sqrt{1-\bar\alpha_{t}}\epsilon_{0})
 }
 $$
+
+putting $x_{0}$ into the eqaution above for $\tilde\mu_{t}(x_{t},x_{0})$ we have; 
 
 $$
 \tilde\mu_{t} = \frac{1}{\sqrt{\alpha_{t}}}(x_{t}-\frac{1- \bar\alpha_{t}}{\sqrt{1-\bar\alpha_{t}}}\epsilon_{0})
@@ -163,14 +166,10 @@ $$
 \Sigma_{\theta}(x_{t}, t) = \sigma_{t}^2I \quad \sigma_{t}=\tilde\beta_{t}=\frac{1-\bar\alpha_{t-1}}{1-\bar\alpha_{t}}\beta_{t}
 $$
 
-the model is conditioned on the amount of noise via timestep conditioning
+$\epsilon_{\theta}(x_{t},t)$ is the estimation of $\epsilon_{0}$ based on information available at time $t$.
 
-$\epsilon_{\theta}(x_{t},t)$ is the estimation of $\epsilon_{0}$ based on information available at time $t$
+Note: the model is conditioned on the amount of noise via timestep conditioning.
 
-<aside>
-💡 Here, $\epsilon_{\theta}(x_{t},t)$ is a neural network that learns to predict the source noise $\epsilon_{0} \sim \mathcal{N}(0, I)$ that determines $x_{t}$ from $x_{0}$. We have therefore shown that learning a VDM by predicting the original image $x_{0}$ is equivalent to learning to predict the noise; empirically, however, some works have found that predicting the noise resulted in better performance
-
-</aside>
 
 ### Training a diffusion model for the second interpretation
 
@@ -199,6 +198,11 @@ $$
 $$
 L_{t}^{simple} = E_{t \sim [1, T], x_{0}, \epsilon_{t}}[||\epsilon_{t}-\epsilon_{\theta}(\sqrt{\bar\alpha_{t}}x_{0} + \sqrt{1 - \bar\alpha_{t}}\epsilon_{0},t)||^2]
 $$
+
+<aside>
+💡 Here, $\epsilon_{\theta}(x_{t},t)$ is a neural network that learns to predict the source noise $\epsilon_{0} \sim \mathcal{N}(0, I)$ that generates $x_{t}$ from $x_{0}$. We have therefore shown that learning a variational diffusion model by predicting the original image $x_{0}$ is equivalent to learning to predict the noise.
+
+</aside>
 
 
 ![algorithm_2](./algorithm_2.png)

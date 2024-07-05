@@ -49,6 +49,14 @@ However, if I want to train the model, let’s say in fine-tuning phase, I have 
 💡 1B parameters = 24GB memory (to train the model)
 </aside>
 
++
+Here is the size of the models that some AWS instances can handle. 
+
+
+<p align="center">
+<img src="./aws.png" width=500 height=300>
+</p>
+
 ## GPU RAM needed to train larger models
 
 Assumptions: 
