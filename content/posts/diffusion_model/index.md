@@ -128,6 +128,8 @@ Note: the model is conditioned on the amount of noise via timestep conditioning.
 
 </aside>
 
+<br/>
+
 <aside>
 💡 A Diffusion Model can be trained by simply learning a neural network to predict the original natural image $x_{0}$ from an arbitrary noised version $x_{t}$ and its time index t. However, $x_{0}$ has two other equivalent parameterizations, which leads to two further interpretations for a diffusion model.
 
@@ -203,9 +205,15 @@ $$
 ![algorithm_2](./algorithm_2.png)
 
 <aside>
-💡 Here, $\epsilon_{\theta}(x_{t},t)$ is a neural network that learns to predict the source noise $\epsilon_{0} \sim \mathcal{N}(0, I)$ that generates $x_{t}$ from $x_{0}$. We have therefore shown that learning a variational diffusion model by predicting the original image $x_{0}$ is equivalent to learning to predict the noise.
+💡 Here, $\epsilon_{\theta}(x_{t},t)$ is a neural network that learns to predict the source noise $\epsilon_{0} \sim \mathcal{N}(0, I)$ that generates $x_{t}$ from $x_{0}$. We have therefore shown that learning a variational diffusion model by predicting the original image $x_{0}$ (or $\tilde\mu_{t}$ directly) is equivalent to learning to predict the noise.
 
 </aside>
+
+<br/>
+
+**Question:** why don't we simply subtract $\epsilon_{\theta}(x_{t},t)$ from $x_{t}$ and get $x_{0}$? Instead we calculate the noise added at time step $t$ and subtract it from $x_{t}$ and add additional noise term and get $x_{t-1}$.
+
+hint: Simply subtracting the predicted noise would not account for the complexity and uncertainty involved in the denoising process. We have one uncertainty in neural net calculation and another one in adding the additional noise term.
 
 ## Third Interpretation of Reverse Process: $s_{\theta}(x_{t},t) \approx \nabla_{x_{t}}\log p(x_{t})$ 
 
@@ -220,7 +228,7 @@ $$
 recall $q(x_{t}|x_{0}) = \mathcal{N}(x_{t}; \sqrt{\bar\alpha_{t}}x_{0} , (1 - \bar\alpha_{t})I )$
 
 $$
-\mathbb{E}[\mu_{x_{t}}|z] = x_{t} + (1- \bar\alpha) \nabla_{x_{t}}\log p(x_{t})
+\mathbb{E}[\mu_{x_{t}}|x_{t}] = x_{t} + (1- \bar\alpha) \nabla_{x_{t}}\log p(x_{t})
 $$
 
 $$

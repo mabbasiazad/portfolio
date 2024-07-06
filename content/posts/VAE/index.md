@@ -46,17 +46,17 @@ p(x) = \int_{z}p_{\theta}(x|z)p(z)
 $$
     
 $$
-p(x) = \int q_{\phi}(z|x) \frac{p_{\theta}(x|z)p(z)}{q_{\phi}(x|z)}
+p(x) = \int q_{\phi}(z|x) \frac{p_{\theta}(x|z)p(z)}{q_{\phi}(z|x)}
 $$
     
 $$
-\log p(x)= \log E_{z \sim q_{\phi}(z|x)} \Biggl[ \frac{p_{\theta}(x|z)p(z)}{q_{\phi}(x|z)} \Biggr]
+\log p(x)= \log E_{z \sim q_{\phi}(z|x)} \Biggl[ \frac{p_{\theta}(x|z)p(z)}{q_{\phi}(z|x)} \Biggr]
 $$
     
 following Jensen’s inequality, i.e., $ E(Ln(X)) \leq Ln(E(X))$:
     
 $$
-\log p(x) \geq E_{z \sim q_{\phi}(z|x)} \Biggl[ \log \frac{p_{\theta}(x|z)p(z)}{q_{\phi}(x|z)} \Biggr]
+\log p(x) \geq E_{z \sim q_{\phi}(z|x)} \Biggl[ \log \frac{p_{\theta}(x|z)p(z)}{q_{\phi}(z|x)} \Biggr]
 $$
     
 The right-hand side of this inequality is the evidence lower-bound (ELBO). 
@@ -66,13 +66,13 @@ The ELBO provides a joint optimisation objective, which simultaneously updates t
 We can simplify the above equation: 
     
 $$
-\log p(x) \geq E_{z \sim q_{\phi}(z|x)} \Biggl[ \log \frac{p(z)}{q_{\phi}(x|z)} \Biggr] + E_{z \sim q_{\phi}(z|x)} \Biggl[ \log p_{\theta}(x|z) \Biggr]
+\log p(x) \geq E_{z \sim q_{\phi}(z|x)} \Biggl[ \log \frac{p(z)}{q_{\phi}(z|x)} \Biggr] + E_{z \sim q_{\phi}(z|x)} \Biggl[ \log p_{\theta}(x|z) \Biggr]
 $$
     
 Note: The goal is to maximize the right-hand side of the equation. However, since the neural network solves a minimization problem, we aim to minimize the negative of the right-hand side of the equation.
 
 $$
-min (E_{z \sim q_{\phi}(z|x)} \Biggl[ \log \frac{q_{\phi}(x|z)}{p(z)} \Biggr] - E_{z \sim q_{\phi}(z|x)} \Biggl[ \log p_{\theta}(x|z) \Biggr])
+min (E_{z \sim q_{\phi}(z|x)} \Biggl[ \log \frac{q_{\phi}(z|x)}{p(z)} \Biggr] - E_{z \sim q_{\phi}(z|x)} \Biggl[ \log p_{\theta}(x|z) \Biggr])
 $$
 
 The first term of ELBO is the KL divergence between $q(z|x)$ and normal distribution, and the second term is reconstruction error.
