@@ -67,7 +67,7 @@ $$
 
 ## variance schedule
 
-we can afford larger update step when the sample gets noisier so $\beta_{1} < \beta_{2} < ...<\beta_{T}$ or $\bar\alpha_{1}>\bar\alpha_{2}>...>\bar\alpha_{T}$ 
+we can afford larger update step when the sample gets noisier so $\beta_{1} > \beta_{2} > ...>\beta_{T}$ or $\bar\alpha_{1}<\bar\alpha_{2}<...<\bar\alpha_{T}$ 
 
 <p align="center">
 <img src="./alpa_beta_scheduler.png" width=350 height=250>
@@ -79,21 +79,7 @@ sampling process = generation process = reverse diffusion
 
 We cannot easily estimate $q(x_{t-1}|x_{t})$ because it needs to use the entire dataset (use Bays rule to proove this part)
 
-instead we approximate $q{(x_{t-1}|x_{t})}$  with a parameterized model $p_{\theta}(x_{t-1}|x_{t})$
-
-in oder words, we need to learn a model $p_{\theta}$ to approximate this conditional probability in order to run the reverse diffusion process
-
-$$
-p_{\theta}(x_{t-1}|x_{t}) = \mathcal{N}(x_{t-1};\mu_{\theta}(x_{t}, t), \Sigma_\theta(x_{t}, t))
-$$
-
-the probability of **reverse trajectory** will be equal to:
-
-$$
-p(x_{0:T}) = p(x_{T})\prod_{t=1}^{T}p(x_{t-1}|x_{t})
-$$
-
-It is northworthy that the reverse conditional probability is tractable when conditioned on $x_{0}$.
+However, the reverse conditional probability is tractable when conditioned on $x_{0}$.
 
 $$
 \boxed{q(x_{t-1}|x_{t}, x_{0}) =\mathcal{N}(x_{t-1};\tilde\mu_{t}(x_{t}, x_{0}), \tilde\beta_{t}I)} \\
@@ -110,15 +96,37 @@ $$
 \tilde\mu_{t}(x_{t},x_{0}) = \frac{\sqrt{\alpha_{t}}(1-\bar\alpha_{t-1})}{1-\bar\alpha_{t}}x_{t}+\frac{\sqrt{\alpha_{t-1}}\beta_{t}}{1-\bar\alpha_{t}}x_{0}
 }
 $$
+instead we approximate $q{(x_{t-1}|x_{t})}$  with a parameterized model $p_{\theta}(x_{t-1}|x_{t})$
 
-## **First Interpretation of Revese Process: $x_{\theta}(x_{t},t) \approx x_{}0$**
+in oder words, we need to learn a model $p_{\theta}$ to approximate this conditional probability in order to run the reverse diffusion process
+
+$$
+p_{\theta}(x_{t-1}|x_{t}) \approx q(x_{t-1}|x_{t}, x_{0})
+$$
+
+$$
+p_{\theta}(x_{t-1}|x_{t})=\mathcal{N}(x_{t-1};\mu_{\theta}(x_{t}, t), \Sigma_{\theta}(x_{t}, t))
+$$
+
+<!-- the probability of **reverse trajectory** will be equal to:
+
+$$
+p(x_{0:T}) = p(x_{T})\prod_{t=1}^{T}p(x_{t-1}|x_{t})
+$$ -->
+
+
+
+We would like to train $\mu_{\theta}$ to predict $\tilde\mu_{t}$.
+
+Note: the model is conditioned on the amount of noise via timestep conditioning.
+
+
+![algorithm_1](./algorithm_1.png)
 
 <aside>
 💡 The reverse diffiusion process can be intutively defined as; given a noisy observation $x_{t}$, we first make a prediction corresponding $x_{0}$, then we use it to obtain a sample $x_{t-1}$through the reverse conditional distribution $q(x_{t-1}|x_{t}, x_{0})$
 
 </aside>
-
-![algorithm_1](./algorithm_1.png)
 
 <aside>
 💡 A Diffusion Model can be trained by simply learning a neural network to predict the original natural image $x_{0}$ from an arbitrary noised version $x_{t}$ and its time index t. However, $x_{0}$ has two other equivalent parameterizations, which leads to two further interpretations for a diffusion model.
@@ -141,20 +149,14 @@ $$
 putting $x_{0}$ into the eqaution above for $\tilde\mu_{t}(x_{t},x_{0})$ we have; 
 
 $$
+\boxed{
 \tilde\mu_{t} = \frac{1}{\sqrt{\alpha_{t}}}(x_{t}-\frac{1- \bar\alpha_{t}}{\sqrt{1-\bar\alpha_{t}}}\epsilon_{0})
+}
 $$
 
-The aim in reverse process is to learn a network to approximate conditional probability distributions in the reverse diffiusion process. In other words we want to learn $q(x_{t-1}|x_{t}, x_{0})$
+<!-- The aim in reverse process is to learn a network to approximate conditional probability distributions in the reverse diffiusion process. In other words we want to learn $q(x_{t-1}|x_{t}, x_{0})$ -->
 
-$$
-p_{\theta}(x_{t-1}|x_{t}) \approx q(x_{t-1}|x_{t}, x_{0})
-$$
-
-$$
-p_{\theta}(x_{t-1}|x_{t})=\mathcal{N}(x_{t-1};\mu_{\theta}(x_{t}, t), \Sigma_{\theta}(x_{t}, t))
-$$
-
-We would like to train $\mu_{\theta}$ to predict $\tilde\mu_{t} = \frac{1}{\sqrt{\alpha_{t}}}(x_{t}-\frac{1- \bar\alpha_{t}}{\sqrt{1-\bar\alpha_{t}}}\epsilon_{0})$. 
+Here we would like to train $\mu_{\theta}$ to predict $\tilde\mu_{t} = \frac{1}{\sqrt{\alpha_{t}}}(x_{t}-\frac{1- \bar\alpha_{t}}{\sqrt{1-\bar\alpha_{t}}}\epsilon_{0})$. 
 
 Therefore, we can set our approximate denoising transition mean $\mu_{\theta}(x_{t},t)$ as; 
 
@@ -168,7 +170,6 @@ $$
 
 $\epsilon_{\theta}(x_{t},t)$ is the estimation of $\epsilon_{0}$ based on information available at time $t$.
 
-Note: the model is conditioned on the amount of noise via timestep conditioning.
 
 
 ### Training a diffusion model for the second interpretation
@@ -187,8 +188,8 @@ $$
 \begin{aligned}
 L_{t} &= E_{x_0, \epsilon}[\frac{1}{2||\Sigma_{\theta}(x_{t},t)||^{2}}||\mu(x_{t}, x_{0})-\mu_{\theta}(x_{t},t)||^{2}] \\\\
 &=E_{x_0, \epsilon}[\frac{1}{2||\Sigma_{\theta}||^{2}}||\frac{1}{\sqrt{\alpha_{t}}}(x_{t}-\frac{1-\alpha_{t}}{\sqrt{1-\bar\alpha_{t}}}\epsilon_{0})-\frac{1}{\sqrt{\alpha_{t}}}(x_{t}-\frac{1-\alpha_{t}}{\sqrt{1-\bar\alpha_{t}}}\epsilon_{\theta}(x_{t},t))||^{2}] \\\\
-&= E_{x_0, \epsilon}[\frac{(1-\alpha_{t})^2}{2\alpha_{t}(1-\bar\alpha_{t})||\Sigma_{\theta}||^{2}}||\epsilon_{t}-\epsilon_{\theta}(x_{t},t)||^2]\\\\
-&= E_{x_0, \epsilon}[\frac{(1-\alpha_{t})^2}{2\alpha_{t}(1-\bar\alpha_{t})||\Sigma_{\theta}||^{2}}||\epsilon_{t}-\epsilon_{\theta}(\sqrt{\bar\alpha_{t}}x_{0} + \sqrt{1 - \bar\alpha_{t}}\epsilon_{0},t)||^2]
+&= E_{x_0, \epsilon}[\frac{(1-\alpha_{t})^2}{2\alpha_{t}(1-\bar\alpha_{t})||\Sigma_{\theta}||^{2}}||\epsilon_{0}-\epsilon_{\theta}(x_{t},t)||^2]\\\\
+&= E_{x_0, \epsilon}[\frac{(1-\alpha_{t})^2}{2\alpha_{t}(1-\bar\alpha_{t})||\Sigma_{\theta}||^{2}}||\epsilon_{0}-\epsilon_{\theta}(\sqrt{\bar\alpha_{t}}x_{0} + \sqrt{1 - \bar\alpha_{t}}\epsilon_{0},t)||^2]
 \end{aligned} 
 $$
 
@@ -196,16 +197,15 @@ $$
 **Simplifiction:** Empirically, training a diffusion model works better with a simplified objective that ignores the weighting term
 
 $$
-L_{t}^{simple} = E_{t \sim [1, T], x_{0}, \epsilon_{t}}[||\epsilon_{t}-\epsilon_{\theta}(\sqrt{\bar\alpha_{t}}x_{0} + \sqrt{1 - \bar\alpha_{t}}\epsilon_{0},t)||^2]
+L_{t}^{simple} = E_{t \sim [1, T], x_{0}, \epsilon_{0}}[||\epsilon_{0}-\epsilon_{\theta}(\sqrt{\bar\alpha_{t}}x_{0} + \sqrt{1 - \bar\alpha_{t}}\epsilon_{0},t)||^2]
 $$
+
+![algorithm_2](./algorithm_2.png)
 
 <aside>
 💡 Here, $\epsilon_{\theta}(x_{t},t)$ is a neural network that learns to predict the source noise $\epsilon_{0} \sim \mathcal{N}(0, I)$ that generates $x_{t}$ from $x_{0}$. We have therefore shown that learning a variational diffusion model by predicting the original image $x_{0}$ is equivalent to learning to predict the noise.
 
 </aside>
-
-
-![algorithm_2](./algorithm_2.png)
 
 ## Third Interpretation of Reverse Process: $s_{\theta}(x_{t},t) \approx \nabla_{x_{t}}\log p(x_{t})$ 
 
@@ -235,9 +235,11 @@ $$
 
 putting this parametrization of $x_{0}$ in $\tilde\mu(x_{t,}, x_{0})$ formula we will have; 
 
+
 $$
 \tilde\mu(x_{t}, x_{0}) = \frac{1}{\sqrt{\alpha_{t}}}x_{t} + \frac{1-\alpha_{t}}{\sqrt{\alpha_{t}}}\nabla\log p (x_{t})
 $$
+
 
 then we can set our approximate mean as:
 
@@ -253,7 +255,9 @@ $$
 \arg \min_{\theta} \frac{1}{2\beta_t^2} \frac{(1-\alpha_{t})^2}{\alpha_{t}}[||  \nabla_{x} \log p(x_{t})- s_{\theta}(x_{t}, t)||_{2}^{2}]
 $$
 
-According to the equation above, we can train score-based models by minimizing the **Fisher divergence** between the model and the data distributions. Intuitively, the Fisher divergence compares the squared $l_{2}$ distance between the ground-truth data score and the score-based model. Directly computing this divergence, however, is infeasible because it requires access to the unknown data score  $\nabla_{x} \log p(\mathbf{x})$. Fortunately, there exists a family of methods called **score matching** that minimize the Fisher divergence without knowledge of the ground-truth data score. 
+According to the equation above, we can train score-based models by minimizing the **Fisher divergence** between the model and the data distributions. Intuitively, the Fisher divergence compares the squared $l_{2}$ distance between the ground-truth data score and the score-based model. 
+
+Directly computing this divergence, however, is infeasible because it requires access to the unknown data score  $\nabla_{x} \log p(\mathbf{x})$. Fortunately, there exists a family of methods called **score matching** that minimize the Fisher divergence without knowledge of the ground-truth data score. 
 
 ## Langevin Dynamics
 
@@ -267,9 +271,8 @@ $$
 
 where $z_{i}\sim \mathcal{N}(0, I)$ and $\epsilon > 0$ is a fixed step size. $x_{0}$ is initialized from an arbitrary priror distribution $x_{0} \sim \pi(x)$.
 
-.
 
-# Implementation
+<!-- # Implementation
 
 corruption process
 
@@ -289,7 +292,7 @@ model_prediction = model(noisy_x, timesteps).sample
 loss = mse_loss(model_prediction, noise) # noise as the target
 ```
 
-how is training loop and how is sample loop : refere to [hugging face notebooks](https://github.com/huggingface/diffusion-models-class). 
+how is training loop and how is sample loop : refere to [hugging face notebooks](https://github.com/huggingface/diffusion-models-class).  -->
 
 # Conditioned Generation
 
