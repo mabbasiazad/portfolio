@@ -96,9 +96,15 @@ $$
 \tilde\mu_{t}(x_{t},x_{0}) = \frac{\sqrt{\alpha_{t}}(1-\bar\alpha_{t-1})}{1-\bar\alpha_{t}}x_{t}+\frac{\sqrt{\alpha_{t-1}}\beta_{t}}{1-\bar\alpha_{t}}x_{0}
 }
 $$
-instead we approximate $q{(x_{t-1}|x_{t})}$  with a parameterized model $p_{\theta}(x_{t-1}|x_{t})$
 
-in oder words, we need to learn a model $p_{\theta}$ to approximate this conditional probability in order to run the reverse diffusion process
+**Q**: How can I calculate $\tilde\mu$ without having $x_{0}$?
+
+**A**: Use a model to learn $x_0$ => $x_{\theta}(x_{t}, t) = x_{0}$, or directly learn $\mu_{\theta}(x_{t}, t)$ = $\tilde\mu_{t}(x_{t}, x_{0})$.
+
+<br/>
+
+
+In oder words, we need to learn a model $p_{\theta}$ to approximate this conditional probability in order to run the reverse diffusion process
 
 $$
 p_{\theta}(x_{t-1}|x_{t}) \approx q(x_{t-1}|x_{t}, x_{0})
@@ -215,7 +221,7 @@ $$
 
 hint: Simply subtracting the predicted noise would not account for the complexity and uncertainty involved in the denoising process. We have one uncertainty in neural net calculation and another one in adding the additional noise term.
 
-## Third Interpretation of Reverse Process: $s_{\theta}(x_{t},t) \approx \nabla_{x_{t}}\log p(x_{t})$ 
+## Third Interpretation: $s_{\theta}(x_{t},t) \approx \nabla_{x_{t}}\log p(x_{t})$ 
 
 To derive the third common interpretation of Diffusion Models, we appeal to Tweedie’s Formula. In English, Tweedie’s Formula states that the true mean of an exponential family distribution, given samples drawn from it, can be estimated by the maximum likelihood estimate of the samples (aka empirical mean) plus some correction term involving the score of the estimate. In the case of just one observed sample, the empirical mean is just the sample itself. 
 
@@ -225,7 +231,7 @@ $$
 \mathbb{E}[\mu|z] = z + \Sigma \nabla_{z}\log p(z)
 $$
 
-recall $q(x_{t}|x_{0}) = \mathcal{N}(x_{t}; \sqrt{\bar\alpha_{t}}x_{0} , (1 - \bar\alpha_{t})I )$
+recall $q(x_{t}|x_{0}) = \mathcal{N}(x_{t}; \sqrt{\bar\alpha_{t}}x_{0} , (1 - \bar\alpha_{t})I ) := p(x)$
 
 $$
 \mathbb{E}[\mu_{x_{t}}|x_{t}] = x_{t} + (1- \bar\alpha) \nabla_{x_{t}}\log p(x_{t})
@@ -257,17 +263,20 @@ $$
 
 and the corresponding optimizatoin problem becomes: 
 
-recall $\arg \min_{\theta} D_{KL}(q(x_{t-1}|x_{t}, x_{0})|| p(x_{t-1}|x_{t})$
+recall $\arg \min_{\theta} D_{KL}(q(x_{t-1}|x_{t}, x_{0})|| p(x_{t-1}|x_{t}))$
 
 $$
 \arg \min_{\theta} \frac{1}{2\beta_t^2} \frac{(1-\alpha_{t})^2}{\alpha_{t}}[||  \nabla_{x} \log p(x_{t})- s_{\theta}(x_{t}, t)||_{2}^{2}]
 $$
 
+$s_{\theta}(x_{t}, t)$ is called "score". 
+
 According to the equation above, we can train score-based models by minimizing the **Fisher divergence** between the model and the data distributions. Intuitively, the Fisher divergence compares the squared $l_{2}$ distance between the ground-truth data score and the score-based model. 
 
 Directly computing this divergence, however, is infeasible because it requires access to the unknown data score  $\nabla_{x} \log p(\mathbf{x})$. Fortunately, there exists a family of methods called **score matching** that minimize the Fisher divergence without knowledge of the ground-truth data score. 
 
-## Langevin Dynamics
+
+### Langevin Dynamics
 
 how to draw sample from a distribution by knowing just its score function 
 
@@ -278,6 +287,19 @@ x_{i+1} \leftarrow x_{i}+ \epsilon \nabla_{x} \log p(\mathbf{x}) + \sqrt{2\epsil
 $$
 
 where $z_{i}\sim \mathcal{N}(0, I)$ and $\epsilon > 0$ is a fixed step size. $x_{0}$ is initialized from an arbitrary priror distribution $x_{0} \sim \pi(x)$.
+
+### Score-based models learn "Energy gradients"
+
+In the picture, there is an energy potential surface, with arrows indicating the directions to move downhill, learned by the diffuser model. The motion of the dots illustrates Langevin Dynamics, demonstrating how particles move in response to the energy gradients on the surface.
+
+<p align="center">
+<img src="./langevin.gif" width=300 height=300>
+</p>
+
+<p align="center">
+<img src="./energy.png" width=400 height=250>
+</p>
+
 
 
 <!-- # Implementation
@@ -302,118 +324,10 @@ loss = mse_loss(model_prediction, noise) # noise as the target
 
 how is training loop and how is sample loop : refere to [hugging face notebooks](https://github.com/huggingface/diffusion-models-class).  -->
 
-# Conditioned Generation
 
-condtional generation =  guided diffusion = guidence
+<!-- # Summary
 
-recall $p(x_{0:T}) = p(x_{T})\prod_{t=1}^{T}p(x_{t-1}|x_{t})$
-
-then conditional diffusion model is defined as: 
-
-$$
-p(x_{0:T}) = p(x_{T})\prod_{t=1}^{T}p(x_{t-1}|x_{t},y)
-$$
-
-y could be text encoding in image-text generation or a low-resolusion image to perform super-resolution on. 
-
-We train the diffusion model to predict $x_{\theta}(x_{t},t,y) \approx x_{0}$ or $\epsilon_{\theta}(x_{t},t,y) \approx \epsilon_{0}$ or $s_{\theta}(x_{t},t,y) \approx \nabla \log p(x|y)$
-
-# Guidance
-
-What is guidance?
-
-a process by which the model predictions at each step in the generation process are evaluated against some guidance function and modified such that the final generated image is more to our liking.
-
-why guidance when we can use conditioned generation?
-
-1. By just adding the labe $y$ to the input, the model may learn to ignore or downplay any conditioning information. Guidence is proposed to more explicitly control the amount of weight the model gives to conditioning information at the cost of sample diversity. 
-2. When we train unconditional model but we want to use it for conditional generation. We'll take an existing model and steer the generation process at inference time for additional control
-3. For generation after fine tuning an existing model. After re-training a model with new data the generated output is something between main dataset and new data set. By using guidance we can have more control over generating process to have more desirabel outputs.
-
-## Classifier Guidance
-
-Let us start with score-base formulation of a diffusion models. 
-
-$$
-\nabla_{x}\log p(x)= \nabla_{x}(-\frac{1}{2\sigma^{2}}(x-\mu)^2)=-\frac{x-\mu}{\sigma^2}=-\frac{\epsilon}{\sigma}
-$$
-
-Knowing this, then we can write: 
-
-$$
-\begin{aligned}
-s_{\theta}(x_{t},t) = \nabla_{x_{t}}\log q(x_{t})&=E_{q(x_{0})}[\nabla_{x_{t}}\log q(x_{t}|x_{0})] \\\\
-&=E_{q(x_{0})}[-\frac{\epsilon_{\theta}(x_{t},t)}{\sqrt{1-\bar\alpha_{t}}}]\\\\
-&=-\color{cyan} \frac{\epsilon_{\theta}(x_{t},t)}{\sqrt{1-\bar\alpha_{t}}}
-\end{aligned}
-$$
-
-for conditonal case the score function is defined as: $\nabla \log q(x_{t},y)$
-
-$$
-\nabla \log q(x_{t},y) =\nabla \log q(x_{t}) +\nabla \log q(y|x_{t}) = -\frac{\epsilon_{\theta}(x_{t},t)}{\sqrt{1-\bar\alpha_{t}}}+\nabla_{x_{t}} \log q(y|x_{t})
-$$
-
-we can approximate the term $\nabla \log q(y|x_{t})$ by training a classifier $f_{\phi}(y|x)$ on noisy data $x_{t}$. So, we can continue the math above:
-
- 
-
-$$
-\begin{aligned}
-... &= -\frac{\epsilon_{\theta}(x_{t},t)}{\sqrt{1-\bar\alpha_{t}}}+\nabla_{x_{t}} \log q(y|x_{t})\\\\
- &\approx -\frac{\epsilon_{\theta}(x_{t},t)}{\sqrt{1-\bar\alpha_{t}}}+\nabla_{x_{t}} f_{\phi}(y|x_{t}) \\\\
-&= \color{cyan} - \frac{1}{\sqrt{1 - \bar \alpha_{t}}}(\epsilon_{\theta}(x_{t}, t) -  \sqrt{1 - \bar \alpha_{t}}\nabla_{x_{t}} f_{\phi}(y|x_{t}))
-\end{aligned}
-$$
-
-so, inorder to guid the sampling process towards the conditioning information y we need to alter the noise prediction by a term comming from gradient of the classifier. we defined this altered prediction as $\bar\epsilon_{t}(x_{t},t)$
-
-$$
-\bar\epsilon_{t}(x_{t},t)=\epsilon_{\theta}(x_{t}, t) -  \sqrt{1 - \bar \alpha_{t}}\omega \nabla_{x_{t}} f_{\phi}(y|x_{t})
-$$
-
-the term $\omega$ is added to control the strength of the clssifier guidance. 
-
-![guidance](./guidance.png)
-
-
-## Classifier-Free Guidance
-
-A conditional diffusion model $p_{\theta}(x|y)$ is trained on paired data $(x,y)$, where the conditioning information $y$ gets discarded periodically at random such that the model knows how to generate images unconditionally as well, i.e. $\epsilon_{\theta}(x, t) = \epsilon_{\theta}(x, t, y=\varnothing)$. 
-
-Given,
-
-$$
-\begin{aligned}
-\nabla_{x_{t}}\log(y|x_{t})&= \nabla_{x_{t}}\log(x_{t}|y)- \nabla_{x_{t}} \log p(x_{t}) \\\\
-&=-\frac{1}{\sqrt{1-\bar \alpha_{t}}}(\epsilon_{\theta}(x_{t}, t,y)-\epsilon_{\theta}(x_{t},t))
-\end{aligned}
-$$
-
-Then,
-
-$$
-\begin{aligned}
-\bar\epsilon_{t}(x_{t},t,y)&=\epsilon_{\theta}(x_{t}, t,y) -  \sqrt{1 - \bar \alpha_{t}}\omega \nabla_{x_{t}} f_{\phi}(y|x_{t}) \\\\
-&=\epsilon_{\theta}(x_{t}, t,y)+\omega(\epsilon_{\theta}(x_{t}, t,y)-\epsilon_{\theta}(x_{t}, t)) \\\\
-&=(\omega+1)\epsilon_{\theta}(x_{t}, t,y)-\omega \epsilon_{\theta}(x_{t}, t)
-\end{aligned}
-$$
-
-## CLIP Guidance
-
-TBD
-
-
-# Stable Diffusion
-
-TBD
-
-
-
-# Summary
-
-Diffusion models are a type of generative model that learn to denoise images by iteratively applying a random diffusion process. The model is trained to predict the original image from the noisy output of the diffusion process. The intuition and math behind diffusion models are explained, including the different interpretations of the reverse process, training a diffusion model, and conditioned generation. Guidance methods, including classifier guidance and CLIP guidance, are also discussed. Stable diffusion is introduced as a way to improve the stability of the diffusion process during training.
+Diffusion models are a type of generative model that learn to denoise images by iteratively applying a random diffusion process. The model is trained to predict the original image from the noisy output of the diffusion process. The intuition and math behind diffusion models are explained, including the different interpretations of the reverse process, training a diffusion model, and conditioned generation. Guidance methods, including classifier guidance and CLIP guidance, are also discussed. Stable diffusion is introduced as a way to improve the stability of the diffusion process during training. -->
 
 # References
 
@@ -421,6 +335,6 @@ Weng, Lilian. (Jul 2021). What are diffusion models? Lil’Log. [https://lilianw
 
 Calvin, Luo. (Aug 2022). Understanding Diffusion Models: A Unified Perspective. arxiv Preprint [arXiv:2208.11970](https://arxiv.org/abs/2208.11970)
 
-Yang, Song, Generative Modeling by Estimating Gradients of the Data Distribution****.**** [https://yang-song.net/blog/2021/score/](https://yang-song.net/blog/2021/score/)
+Yang, Song, Generative Modeling by Estimating Gradients of the Data Distribution.[https://yang-song.net/blog/2021/score/](https://yang-song.net/blog/2021/score/)
 
 Hugging Face Diffusion Models Course, [https://github.com/huggingface/diffusion-models-class](https://github.com/huggingface/diffusion-models-class)
