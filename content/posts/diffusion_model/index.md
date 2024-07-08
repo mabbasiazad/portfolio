@@ -217,9 +217,62 @@ $$
 
 <br/>
 
-**Question:** why don't we simply subtract $\epsilon_{\theta}(x_{t},t)$ from $x_{t}$ and get $x_{0}$? Instead we calculate the noise added at time step $t$ and subtract it from $x_{t}$ and add additional noise term and get $x_{t-1}$.
+The block diagram below shows the block diagram for training algorithm. 
 
-hint: Simply subtracting the predicted noise would not account for the complexity and uncertainty involved in the denoising process. We have one uncertainty in neural net calculation and another one in adding the additional noise term.
+<p align="center">
+<img src="./training.png" width=600 height=200>
+</p>
+
+<br/>
+
+<details>
+  <summary>NN model architecture (optional)</summary>
+  
+  <br/>
+  The model used in UNet. The most important thing about the UNet is the the output has the same shape as the input. 
+
+  <p align="center">
+    <img src="./UNet.png" width=600 height=300>
+  </p>
+
+  What also is great about UNet is that it can take in some additional information.
+  - time embeding: ralated to the timestep and noise level
+  - context embeding: related to controlling the generation, e.g. text description. 
+
+  <p align="center">
+    <img src="./UNetEmbedding.png" width=500 height=200>
+  </p>
+
+</details>
+
+<br/>
+
+And the block diagram for sampling is as follows;  
+
+<p align="center">
+<img src="./sampling.png" width=600 height=200>
+</p>
+<br/>
+
+<details>
+<summary> Q & A (optional)</summary>
+
+**Question 1:** why don't we simply subtract $\epsilon_{\theta}(x_{t},t)$ from $x_{t}$ and get $x_{0}$? Instead we calculate the noise added at time step $t$ and subtract it from $x_{t}$ and add additional noise term and get $x_{t-1}$.
+
+hint: (1) the output of the model is just an estimation of the real noise. (2) Simply subtracting the predicted noise would not account for the complexity and uncertainty involved in the denoising process. We have one uncertainty in neural net calculation and another one in adding the additional noise term.
+
+
+**Qustion 2:** Why do we add additional noise to the less noisy sample to creat a new sample for the next sampling iteration? 
+
+
+**Answer:** To reduce the information content of a sample, you can either reduce its dimensionality (as done in VAEs) or add noise. Empirical evidence shows that these methods stabilize the neural network, preventing it from collapsing to something closer to the dataset's average. The figure below illustrates the effect of adding additional noise.
+
+<p align="center">
+<img src="./additional_noise.png" width=600 height=200>
+</p>
+
+
+</details>
 
 ## Third Interpretation: $s_{\theta}(x_{t},t) \approx \nabla_{x_{t}}\log p(x_{t})$ 
 
@@ -324,6 +377,9 @@ loss = mse_loss(model_prediction, noise) # noise as the target
 
 how is training loop and how is sample loop : refere to [hugging face notebooks](https://github.com/huggingface/diffusion-models-class).  -->
 
+<!-- # DDIM - faster sampling -->
+<!-- # Cross attention -->
+
 
 <!-- # Summary
 
@@ -338,3 +394,5 @@ Calvin, Luo. (Aug 2022). Understanding Diffusion Models: A Unified Perspective. 
 Yang, Song, Generative Modeling by Estimating Gradients of the Data Distribution.[https://yang-song.net/blog/2021/score/](https://yang-song.net/blog/2021/score/)
 
 Hugging Face Diffusion Models Course, [https://github.com/huggingface/diffusion-models-class](https://github.com/huggingface/diffusion-models-class)
+
+DeepLearning.AI, How Diffusion Model Work.
