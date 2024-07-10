@@ -41,7 +41,7 @@ params:
     author: Name
     # googleAnalyticsID: "G-XXXXX"
     DateFormat: "January 2006"
-    defaultTheme: dark
+    defaultTheme: bright
     disableThemeToggle: false
     hideFooter: false
     ShowShareButtons: false
@@ -63,17 +63,17 @@ params:
           enabled: true
           title: Mehdi Azad
           subtitle: 
-            Hi! I'm Mehdi Azad. I'm a professor at George Brown College, School of Computer Technology. I have master's degrees in Systems Design Engineering from the University of Waterloo. With 10+ years of professional experience in data science and engineering ML systems, 
-            I have conducted and managed various AI-driven products/projects in the field of energy and biotech.
-            <br />
-            <br />
-            Click [<u>here</u>](cv.pdf) to download my CV. 
-            <br />
+            Hi! I'm Mehdi Azad. I have master's degrees in Systems Design Engineering from the University of Waterloo. With 10+ years of professional and teaching experience in machine learning and data science, 
+            I have conducted and led various AI-driven projects in the field of energy and biotech.
+            # <br />
+            # <br />
+            # Click [<u>here</u>](cv.pdf) to download my CV. 
+            # <br />
 
           # imageUrl: "my_pic.png"
           imageUrl: "my_pic_formal.jpg"
-          imageWidth: 160
-          imageHeight: 160
+          imageWidth: 120
+          imageHeight: 120
           imageTitle: mehdi image
           buttons:
             - name: Posts
