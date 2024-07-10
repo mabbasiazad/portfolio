@@ -1,5 +1,5 @@
 +++
-title = "Back-of-the-envelope calculation for GPU requirements of LLMs"
+title = "GPU requirements of LLMs: Back-of-the-envelope calculation"
 date = 2024-06-20
 author= ["Mehdi Azad"]
 summary = "Making sense of LLMs' scale regarding computing resource requirements. How many GPUs are required to store and train LLMs and how can I make these requirements more efficient."

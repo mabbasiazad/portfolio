@@ -4,6 +4,7 @@ baseURL: "https://mabbasiazad.github.io/"
 title: mehdi azad
 paginate: 20
 theme: PaperMod
+# theme: congo
 
 enableInlineShortcodes: true
 enableRobotsTXT: true

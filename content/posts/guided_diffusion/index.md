@@ -104,6 +104,8 @@ $$
 \end{aligned}
 $$
 
+So, the same model is trained to make predictions with or without a conditioning prompt as an input. At each step of the denoising process, the model is run twice: once with the prompt and once without the prompt. The prediction without the prompt is subtracted from the prediction with the prompt, which removes the details generated without the prompt, leaving only the details that come from the prompt. This leads to a generation that more closely follows the prompt [6]. 
+
 ## CLIP Guidance
 
 TBD
@@ -121,10 +123,14 @@ Diffusion models are a type of generative model that learn to denoise images by 
 
 # References
 
-Weng, Lilian. (Jul 2021). What are diffusion models? Lil’Log. [https://lilianweng.github.io/posts/2021-07-11-diffusion-models/](https://lilianweng.github.io/posts/2021-07-11-diffusion-models/)
+[1] Weng, Lilian. (Jul 2021). What are diffusion models? Lil’Log. [https://lilianweng.github.io/posts/2021-07-11-diffusion-models/](https://lilianweng.github.io/posts/2021-07-11-diffusion-models/)
 
-Calvin, Luo. (Aug 2022). Understanding Diffusion Models: A Unified Perspective. arxiv Preprint [arXiv:2208.11970](https://arxiv.org/abs/2208.11970)
+[2] Calvin, Luo. (Aug 2022). Understanding Diffusion Models: A Unified Perspective. arxiv Preprint [arXiv:2208.11970](https://arxiv.org/abs/2208.11970)
 
-Yang, Song, Generative Modeling by Estimating Gradients of the Data Distribution****.**** [https://yang-song.net/blog/2021/score/](https://yang-song.net/blog/2021/score/)
+[3] Yang, Song, Generative Modeling by Estimating Gradients of the Data Distribution.[https://yang-song.net/blog/2021/score/](https://yang-song.net/blog/2021/score/)
 
-Hugging Face Diffusion Models Course, [https://github.com/huggingface/diffusion-models-class](https://github.com/huggingface/diffusion-models-class)
+[4] Hugging Face Diffusion Models Course, [https://github.com/huggingface/diffusion-models-class](https://github.com/huggingface/diffusion-models-class)
+
+[5] DeepLearning.AI, How Diffusion Model Work.
+
+[6] Why does diffusion work better than auto-regression? [https://www.youtube.com/watch?v=zc5NTeJbk-k](https://www.youtube.com/watch?v=zc5NTeJbk-k)

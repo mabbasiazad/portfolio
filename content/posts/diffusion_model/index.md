@@ -1,5 +1,5 @@
 +++
-title = 'Easy-to-Follow Math & Intuition for Diffusion Models'
+title = 'Diffusion Models: Easy-to-Follow Math & Intuition'
 date = 2023-12-23
 author= ["Mehdi Azad"]
 summary = "Diffusion models are defined as a Markov chain of diffusion steps that slowly add random noise to data. Then, they learn to reverse the diffusion process to construct desired data samples from the noise. I have tried to process the math underlying these models in a concise and organized manner."
@@ -210,10 +210,20 @@ $$
 
 ![algorithm_2](./algorithm_2.png)
 
+<br/>
+
+**Note**: This approach of sampling is called DDPM. 
+
 <aside>
 💡 Here, $\epsilon_{\theta}(x_{t},t)$ is a neural network that learns to predict the source noise $\epsilon_{0} \sim \mathcal{N}(0, I)$ that generates $x_{t}$ from $x_{0}$. We have therefore shown that learning a variational diffusion model by predicting the original image $x_{0}$ (or $\tilde\mu_{t}$ directly) is equivalent to learning to predict the noise.
 
 </aside>
+
+
+<br/>
+
+**Note**: Theoretically, predicting the noise or $x_0$ is the same. However, empirically, predicting $x_0$ from the initial sample noise ends up getting the dataset’s average. To see the reason, take a look at reference [6].
+
 
 <br/>
 
@@ -265,7 +275,7 @@ hint: (1) the output of the model is just an estimation of the real noise. (2) S
 **Qustion 2:** Why do we add additional noise to the less noisy sample to creat a new sample for the next sampling iteration? 
 
 
-**Answer:** To reduce the information content of a sample, you can either reduce its dimensionality (as done in VAEs) or add noise. Empirical evidence shows that these methods stabilize the neural network, preventing it from collapsing to something closer to the dataset's average. The figure below illustrates the effect of adding additional noise.
+**Answer:** To reduce the information content of a sample, you can either reduce its dimensionality (as done in VAEs) or add noise. Empirical evidence shows that these methods stabilize the neural network, preventing it from collapsing to something closer to the dataset's average [6]. The figure below illustrates the effect of adding additional noise.
 
 <p align="center">
 <img src="./additional_noise.png" width=600 height=200>
@@ -377,7 +387,10 @@ loss = mse_loss(model_prediction, noise) # noise as the target
 
 how is training loop and how is sample loop : refere to [hugging face notebooks](https://github.com/huggingface/diffusion-models-class).  -->
 
-<!-- # DDIM - faster sampling -->
+## DDIM - faster sampling
+
+This sampler is able to skip some time steps because it breaks the Markov assumption. A Markov chain is used solely for probabilistic processes, but DDIM removes all the randomness from the sampling process, making it deterministic. What it does is predict a rough sketch of the final output and then refines it through the denoising process.
+
 <!-- # Cross attention -->
 
 
@@ -387,12 +400,14 @@ Diffusion models are a type of generative model that learn to denoise images by 
 
 # References
 
-Weng, Lilian. (Jul 2021). What are diffusion models? Lil’Log. [https://lilianweng.github.io/posts/2021-07-11-diffusion-models/](https://lilianweng.github.io/posts/2021-07-11-diffusion-models/)
+[1] Weng, Lilian. (Jul 2021). What are diffusion models? Lil’Log. [https://lilianweng.github.io/posts/2021-07-11-diffusion-models/](https://lilianweng.github.io/posts/2021-07-11-diffusion-models/)
 
-Calvin, Luo. (Aug 2022). Understanding Diffusion Models: A Unified Perspective. arxiv Preprint [arXiv:2208.11970](https://arxiv.org/abs/2208.11970)
+[2] Calvin, Luo. (Aug 2022). Understanding Diffusion Models: A Unified Perspective. arxiv Preprint [arXiv:2208.11970](https://arxiv.org/abs/2208.11970)
 
-Yang, Song, Generative Modeling by Estimating Gradients of the Data Distribution.[https://yang-song.net/blog/2021/score/](https://yang-song.net/blog/2021/score/)
+[3] Yang, Song, Generative Modeling by Estimating Gradients of the Data Distribution.[https://yang-song.net/blog/2021/score/](https://yang-song.net/blog/2021/score/)
 
-Hugging Face Diffusion Models Course, [https://github.com/huggingface/diffusion-models-class](https://github.com/huggingface/diffusion-models-class)
+[4] Hugging Face Diffusion Models Course, [https://github.com/huggingface/diffusion-models-class](https://github.com/huggingface/diffusion-models-class)
 
-DeepLearning.AI, How Diffusion Model Work.
+[5] DeepLearning.AI, How Diffusion Model Work.
+
+[6] Why does diffusion work better than auto-regression? [https://www.youtube.com/watch?v=zc5NTeJbk-k](https://www.youtube.com/watch?v=zc5NTeJbk-k)
