@@ -1,12 +1,6 @@
 
-+++
-title = "CRUD = Create Read Update Delete"
-date = 2024-08-13
-author= ["Mehdi Azad"]
-summary = ""
-+++
-
-# CRUD Operations
+# CRUD Operations: 
+# Create, Read, Update, Delete
 
 ## Create a database
 
@@ -23,11 +17,11 @@ When you run the USE <database_name> statement in a Cloud Console workspace, **i
 
 ## Creating new table
 
-```jsx
+```sql
 CREAT TABLE ...; 
 ```
 
-```jsx
+```sql
 CRATE TABLE shoes (
 ID            char(5)         PRIMARY KEY
 ,type         varchar(250)       NOT NULL
@@ -77,7 +71,7 @@ ALTER TABLE studnets MODIFY country VARCHAR(100);
 
 ## Insert in to table
 
-```jsx
+```sql
 INSERT INTO shoes(
 ID,
 type,
@@ -88,7 +82,7 @@ VALUES('1234','slippers','8900',NULL) , ('1235','running','10000',NULL);
 
 ## Create temporary table
 
-```jsx
+```sql
 CREATE TEMPORARY TABLE sandals AS
 (
 	SELECT *

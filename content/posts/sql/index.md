@@ -5,8 +5,11 @@ author= ["Mehdi Azad"]
 summary = "SQL commands for CRUD and Query as well as database desing"
 +++
 
-<!--Write a code to link to the CRUD.md page -->
-[URL path to another document](./CRUD.mdx)
+<!-- use html command to link to CRUD.md file -->
+[CRUD operations]({{< relref "CRUD" >}} "About Us")
+
+ 
+
 
 
 
