@@ -98,7 +98,7 @@ WHERE date_of_birth BETWEEN '2020-01-01' AND '2010-06-01'
 
 ## Sort (Order By)
 
-```jsx
+```sql
 SELECT something
 FROM database
 ORDER BY charactristic;
