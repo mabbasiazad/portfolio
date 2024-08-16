@@ -1,5 +1,5 @@
 +++
-title = "SQL Summary"
+title = "SQL Essentials"
 date = 2024-08-13
 author= ["Mehdi Azad"]
 summary = "SQL commands for CRUD and Query as well as database desing"
