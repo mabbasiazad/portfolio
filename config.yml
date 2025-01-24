@@ -63,8 +63,12 @@ params:
           enabled: true
           title: Mehdi Azad
           subtitle: 
-            Hi! I'm Mehdi Azad. I have master's degrees in Systems Design Engineering from the University of Waterloo. With 10+ years of professional and teaching experience in machine learning, data science, and robotics, 
-            I have conducted and led various projects in the field of energy and biotech.
+            Hi! I'm Mehdi Azad. I'm a professor at George Brown College in the School of Computer Technology. 
+            I hold a master’s degree in Systems Design Engineering from the University of Waterloo 
+            and in Mechatronics Engineering form Iran University of Science and Technology. 
+            With over 10 years of professional and teaching experience in machine learning, data science, 
+            and robotics, I have successfully conducted and led numerous projects in the fields of
+            energy, healthcare, and biotechnology.
             # <br />
             # <br />
             # Click [<u>here</u>](cv.pdf) to download my CV. 
